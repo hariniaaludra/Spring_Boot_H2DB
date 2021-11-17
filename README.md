@@ -74,5 +74,6 @@ Run both Back-end & Front-end in one place:
 ## Run Spring Boot application
 ```
 mvn spring-boot:run
+\\ hi
 ```
 
