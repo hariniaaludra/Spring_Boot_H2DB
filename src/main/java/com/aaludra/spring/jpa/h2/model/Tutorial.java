@@ -1,5 +1,7 @@
 package com.aaludra.spring.jpa.h2.model;
 
+
+
 import javax.persistence.*;
 
 @Entity
