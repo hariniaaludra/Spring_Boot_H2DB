@@ -42,6 +42,21 @@ public class User {
 	
 	@Column(name="updated_date")
 	private Timestamp updateddate;
+	
+	public User(int id,String username,String displayname,String password,Date dob,
+			int phoneno,String status,String createdby,Timestamp createddate,String updatedby,Timestamp updateddate) {
+		this.id=id;
+		this.username=username;
+		this.displayname=displayname;
+		this.password=password;
+		this.dob=dob;
+		this.phoneno=phoneno;
+		this.status=status;
+		this.createdby=createdby;
+		this.createddate=createddate;
+		this.updatedby=updatedby;
+		this.updateddate=updateddate;
+	}
 
 	public int getId() {
 		return id;
@@ -130,6 +145,12 @@ public class User {
 	public void setUpdateddate(Timestamp updateddate) {
 		this.updateddate = updateddate;
 	}	
+	
+	public String toString() {
+		return "User [id= " + id + ", username=" + username + ", displayname=" + displayname + ", password=" + password + 
+				", dob=" + dob + ", phoneno="+ phoneno +", status="+ status + ", createdby=" + createdby +", createddate=" +
+				createddate + ", updatedby=" + updatedby + ", updateddate=" + updateddate + "]";
+				}
 }
 	
 		
