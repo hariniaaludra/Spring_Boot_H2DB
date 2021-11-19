@@ -1,14 +1,12 @@
 package com.aaludra.spring.jpa.h2.model;
 
-import java.security.Timestamp;
 import java.sql.Date;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Customer")
+@Table (name = "Customer")
 public class Customer {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -28,14 +26,13 @@ public class Customer {
 	@Column(name = "Gstin")
 	private String Gstin;
 	
-	public Customer(long id, String cust_name, long cust_Id, String city, Date dob, String Gstin) {
+	public Customer(long id, String cust_name,long cust_Id, String city,Date dob,String Gstin) {
 		this.id=id;
 		this.cust_name=cust_name;
 		this.cust_Id=cust_Id;
 		this.city=city;
 		this.dob=dob;
 		this.Gstin=Gstin;
-		
 	}
 
 
@@ -92,10 +89,9 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", cust_name=" + cust_name + ", cust_Id=" + cust_Id + ", city=" + city + ", dob="
-				+ dob + ", Gstin=" + Gstin + ", getId()=" + getId() + ", getCust_name()=" + getCust_name()
-				+ ", getCust_id()=" + getCust_id() + ", getCity()=" + getCity() + ", getDob()=" + getDob()
-				+ ", getGstin()=" + getGstin() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ dob + ", Gstin=" + Gstin + "]";
 	}
+
+	
 	
 }
