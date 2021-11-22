@@ -31,7 +31,7 @@ public class Employee {
 	private String updatedBy;
 	@Column(name = "UPDATED_DATE")
 	private Timestamp updatedDate;
-
+  
 	public Employee(int id, String empName, String empId, int emPhoneNumber, String empAddress, Date empDoj,
 			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate) {
 		this.id = id;
