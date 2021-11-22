@@ -1,22 +1,23 @@
 package com.aaludra.spring.jpa.h2.model;
 
-import java.security.Timestamp;
+
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.*;
 
 @Entity
-@Table (name = "Customer") 
+@Table (name = "tbl_Customer") 
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@Column(name = "cust_name")
-	private String cust_name;
+	private String custname;
 	
 	@Column(name = "cust_Id")
-	private long cust_Id;
+	private long custId;
 	
 	@Column(name = "city")
 	private String city;
@@ -42,10 +43,14 @@ public class Customer {
 	@Column(name = "updated_date")
 	private Timestamp updatedDate;
 	
-	public Customer(long id, String cust_name,long cust_Id, String city,Date dob,String Gstin,String status,String createdBy,Timestamp createdDate,String updatedBy,Timestamp updatedDate) {
-		this.id=id;
-		this.cust_name=cust_name;
-		this.cust_Id=cust_Id;
+	public Customer() {
+	}
+	
+	
+	
+	public Customer(String custname,long custId, String city,Date dob,String Gstin,String status,String createdBy, Timestamp createdDate,String updatedBy,Timestamp updatedDate) {
+		this.custname=custname;
+		this.custId=custId;
 		this.city=city;
 		this.dob=dob;
 		this.Gstin=Gstin;
@@ -56,6 +61,16 @@ public class Customer {
 		this.updatedDate=updatedDate;
 	}
 
+	
+	
+	
+
+
+
+	
+
+
+
 	public long getId() {
 		return id;
 	}
@@ -64,20 +79,20 @@ public class Customer {
 		this.id = id;
 	}
 
-	public String getCust_name() {
-		return cust_name;
+	public String getCustname() {
+		return custname;
 	}
 
-	public void setCust_name(String cust_name) {
-		this.cust_name = cust_name;
+	public void setCustname(String custname) {
+		this.custname = custname;
 	}
 
-	public long getCust_Id() {
-		return cust_Id;
+	public long getCustId() {
+		return custId;
 	}
 
-	public void setCust_Id(long cust_Id) {
-		this.cust_Id = cust_Id;
+	public void setCustId(long custId) {
+		this.custId = custId;
 	}
 
 	public String getCity() {
@@ -146,7 +161,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", cust_name=" + cust_name + ", cust_Id=" + cust_Id + ", city=" + city + ", dob="
+		return "Customer [id=" + id + ", cust_name=" + custname + ", cust_Id=" + custId + ", city=" + city + ", dob="
 				+ dob + ", Gstin=" + Gstin + ", status=" + status + ", createdBy=" + createdBy + ", createdDate="
 				+ createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + "]";
 	}
