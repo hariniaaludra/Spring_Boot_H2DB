@@ -35,15 +35,8 @@ public class TutorialController {
 
 			if (title == null)
 				tutorialRepository.findAll().forEach(tutorials::add);
-<<<<<<< HEAD
 			
 			  else tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
-			 
-=======
-
-			else
-				tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
->>>>>>> 5f353c228c9805fc681195161fc4eb70ec699960
 
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -113,7 +106,7 @@ public class TutorialController {
 
 	}
 
-<<<<<<< HEAD
+
 	 @GetMapping("/tutorials/published")
 	
 	  public ResponseEntity<List<Tutorial>> findByPublished() { try {
@@ -124,20 +117,8 @@ public class TutorialController {
 	  ResponseEntity<>(tutorials, HttpStatus.OK); } catch (Exception e) { return
 	  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
 	 
-=======
-	@GetMapping("/tutorials/published")
 
-	public ResponseEntity<List<Tutorial>> findByPublished() {
-		try {
-			List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
-			if (tutorials.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(tutorials, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
->>>>>>> 5f353c228c9805fc681195161fc4eb70ec699960
+	
+
 
 }

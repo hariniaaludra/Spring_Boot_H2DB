@@ -2,8 +2,9 @@ package com.aaludra.spring.jpa.h2.model;
 
 import javax.persistence.*;
 
-import java.security.Timestamp;
+
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "TBL_EMPLOYEE")
@@ -32,19 +33,16 @@ public class Employee {
 	@Column(name = "UPDATED_DATE")
 	private Timestamp updatedDate;
   
-	public Employee(int id, String empName, String empId, int emPhoneNumber, String empAddress, Date empDoj,
-			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate) {
-		this.id = id;
-		this.empName = empName;
-		this.empId = empId;
-		this.emPhonenumber = emPhoneNumber;
-		this.empAddress = empAddress;
-		this.empDoj = empDoj;
-		this.status = status;
-		this.createdBy = createdBy;
-		this.createdDate = createdDate;
-		this.updatedBy = updatedBy;
-		this.updatedDate = updatedDate;
+	
+
+	public Employee() {
+		super();
+	}
+
+	public Employee(String empName, String empId, int emPhonenumber, String empAddress, Date empDoj,
+			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,
+			boolean b) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getId() {
