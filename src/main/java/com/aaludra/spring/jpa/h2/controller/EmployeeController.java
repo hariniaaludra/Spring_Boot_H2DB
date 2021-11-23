@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aaludra.spring.jpa.h2.model.Employee;
-import com.aaludra.spring.jpa.h2.model.Tutorial;
+
 import com.aaludra.spring.jpa.h2.repository.EmployeeRepository;
+import com.aaludra.spring.jpa.h2.validationEmployee.EmplyeeValidation;
+import com.aaludra.spring.jpa.h2.validationEmployee.ErrorMesseges;
+import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
@@ -44,7 +50,7 @@ public class EmployeeController {
 
  }
 	@GetMapping("/employee/{id}")
-	public ResponseEntity<Employee>getAllEmployeeById(@PathVariable ("id") int id){
+	public ResponseEntity<Employee>getAllEmployeeById(@PathVariable ("id") long id){
 		
 		 Optional<Employee> employeeData = employeeRepository.findById(id);
 				 if (employeeData.isPresent() ) {
@@ -57,20 +63,24 @@ public class EmployeeController {
 
 	 }
 	@PostMapping("/employee")
-	public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+	public ResponseEntity<?> createEmployee( @RequestBody Employee employee) {
 
 		try {
-						
+			EmplyeeValidation emp =new  EmplyeeValidation();
+			emp.Validat(employee);
 			Employee employeeObj = employeeRepository
 					.save(new Employee(employee.getEmpName(),employee.getEmpId(), employee.getEmPhonenumber(),employee.getEmpAddress(),employee.getEmpDoj(),
 							employee.getStatus(),employee.getCreatedBy(), employee.getCreatedDate(),employee.getUpdatedBy(),employee.getUpdatedDate(), false));
 			return new ResponseEntity<>(employeeObj, HttpStatus.CREATED);
-		} catch (Exception e) {
+		}catch (InvalidRequestException e) {
+			return new ResponseEntity<>(new ErrorMesseges(HttpStatus.BAD_REQUEST.value(),e.getMessage()),HttpStatus.BAD_REQUEST);
+		} 
+		catch (Exception e) {
 			return new ResponseEntity<>( HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	@PutMapping("/employee/{id}")
-	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
+	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
 		Optional<Employee> employeeData = employeeRepository.findById(id);
 
 		if (employeeData.isPresent()) {
@@ -91,7 +101,7 @@ public class EmployeeController {
 		}
 	}
 	@DeleteMapping("/employee/{id}")
-	public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") int id) {
+	public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") long id) {
 		try {
 			employeeRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

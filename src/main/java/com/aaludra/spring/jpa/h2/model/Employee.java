@@ -3,6 +3,7 @@ package com.aaludra.spring.jpa.h2.model;
 import javax.persistence.*;
 
 
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -12,7 +13,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(name = "EMP_NAME")
+	@Column(name = "EMP_NAME")	
 	private String empName;
 	@Column(name = "EMP_ID")
 	private String empId;
@@ -36,13 +37,22 @@ public class Employee {
 	
 
 	public Employee() {
-		super();
+		
 	}
 
 	public Employee(String empName, String empId, int emPhonenumber, String empAddress, Date empDoj,
 			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,
 			boolean b) {
-		// TODO Auto-generated constructor stub
+		this.empName = empName;
+		this.empId = empId;
+		this.emPhonenumber = emPhonenumber;
+		this.empAddress= empAddress;
+		this.empDoj = empDoj;
+		this.status= status;
+		this.createdBy =  createdBy ;
+		this.createdDate =  createdDate;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
 	}
 
 	public int getId() {
