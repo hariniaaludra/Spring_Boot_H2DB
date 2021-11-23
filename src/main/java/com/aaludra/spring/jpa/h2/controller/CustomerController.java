@@ -23,7 +23,7 @@ import com.aaludra.spring.jpa.h2.repository.CustomerRepository;
 
 @RestController
 @RequestMapping("/api")
-public class CustomerController {
+public class CustomerController { 
 
 	@Autowired
 	CustomerRepository customerRepository;
