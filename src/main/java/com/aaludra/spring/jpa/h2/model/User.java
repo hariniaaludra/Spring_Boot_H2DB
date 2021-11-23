@@ -2,8 +2,8 @@ package com.aaludra.spring.jpa.h2.model;
 
 import javax.persistence.*;
 
-import java.security.Timestamp;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="tbl_user")
@@ -43,6 +43,12 @@ public class User {
 	@Column(name="updated_date")
 	private Timestamp updateddate;
 	
+	
+	
+	public User() {
+		
+	}
+
 	public User(int id,String username,String displayname,String password,Date dob,
 			int phoneno,String status,String createdby,Timestamp createddate,String updatedby,Timestamp updateddate) {
 		this.id=id;
