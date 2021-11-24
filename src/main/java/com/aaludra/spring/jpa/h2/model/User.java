@@ -14,7 +14,7 @@ public class User {
 	private int id;
 	
 	@Column(name="user_name")
-	private String username;
+	public String username;
 	
 	@Column(name="display_name")
     private String displayname;
