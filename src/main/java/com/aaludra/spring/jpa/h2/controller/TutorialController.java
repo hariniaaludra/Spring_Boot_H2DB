@@ -37,7 +37,7 @@ public class TutorialController {
 				tutorialRepository.findAll().forEach(tutorials::add);
 			
 			  else tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
-			 
+
 
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -106,7 +106,6 @@ public class TutorialController {
 		}
 
 	}
-
 	 @GetMapping("/tutorials/published")
 	
 	  public ResponseEntity<List<Tutorial>> findByPublished() { try {
