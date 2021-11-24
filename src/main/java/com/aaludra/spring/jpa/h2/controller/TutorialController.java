@@ -38,6 +38,7 @@ public class TutorialController {
 			
 			  else tutorialRepository.findByTitleContaining(title).forEach(tutorials::add);
 
+
 			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
@@ -105,8 +106,6 @@ public class TutorialController {
 		}
 
 	}
-
-
 	 @GetMapping("/tutorials/published")
 	
 	  public ResponseEntity<List<Tutorial>> findByPublished() { try {
@@ -117,8 +116,5 @@ public class TutorialController {
 	  ResponseEntity<>(tutorials, HttpStatus.OK); } catch (Exception e) { return
 	  new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); } }
 	 
-
-	
-
 
 }

@@ -1,57 +1,25 @@
-package com.aaludra.spring.jpa.h2.model;
-
-import javax.persistence.*;
+package com.aaludra.spring.jpa.h2.view;
 
 
-import java.sql.Timestamp;
-import java.sql.Date;
-
-@Entity
-@Table(name = "tbl_student")
-
-public class Student {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
-	@Column(name = "student_name")
+public class Studentview {
 	private String studentname;
-
-	@Column(name = "roll_number")
-	private int rollnumber;
-
-	@Column(name = "course")
+	private String rollnumber;
 	private String course;
-
-	@Column(name = "degree")
 	private String degree;
-
-	@Column(name = "dob")
-	private Date dob;
-	
-	@Column(name = "status")
+	private String dob;
 	private String status;
-	
-	@Column(name = "created_by")
 	private String createdby;
-	
-	@Column(name = "created_date")
-	private Timestamp createddate;
-	
-	@Column(name = "updated_by")
+	private String createddate;
 	private String updatedby;
-	
-	@Column(name = "updated_date")
-	private Timestamp updateddate;
+	private String updateddate;
 
-	public Student() {
-
+	public Studentview() {
+		
 	}
 
-	public Student(int id, String studentname, int rollnumber, String course, String degree, Date dob, String status,
-			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
+	public Studentview(String studentname, String rollnumber, String course, String degree, String dob, String status,
+			String createdby, String createddate, String updatedby, String updateddate) {
 		super();
-		this.id = id;
 		this.studentname = studentname;
 		this.rollnumber = rollnumber;
 		this.course = course;
@@ -64,14 +32,6 @@ public class Student {
 		this.updateddate = updateddate;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getStudentname() {
 		return studentname;
 	}
@@ -80,11 +40,11 @@ public class Student {
 		this.studentname = studentname;
 	}
 
-	public int getRollnumber() {
+	public String getRollnumber() {
 		return rollnumber;
 	}
 
-	public void setRollnumber(int rollnumber) {
+	public void setRollnumber(String rollnumber) {
 		this.rollnumber = rollnumber;
 	}
 
@@ -104,11 +64,11 @@ public class Student {
 		this.degree = degree;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -128,11 +88,11 @@ public class Student {
 		this.createdby = createdby;
 	}
 
-	public Timestamp getCreateddate() {
+	public String getCreateddate() {
 		return createddate;
 	}
 
-	public void setCreateddate(Timestamp createddate) {
+	public void setCreateddate(String createddate) {
 		this.createddate = createddate;
 	}
 
@@ -144,21 +104,22 @@ public class Student {
 		this.updatedby = updatedby;
 	}
 
-	public Timestamp getUpdateddate() {
+	public String getUpdateddate() {
 		return updateddate;
 	}
 
-	public void setUpdateddate(Timestamp updateddate) {
+	public void setUpdateddate(String updateddate) {
 		this.updateddate = updateddate;
 	}
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", studentname=" + studentname + ", rollnumber=" + rollnumber + ", course="
-				+ course + ", degree=" + degree + ", dob=" + dob + ", status=" + status + ", createdby=" + createdby
+		return "Studentview [studentname=" + studentname + ", rollnumber=" + rollnumber + ", course=" + course
+				+ ", degree=" + degree + ", dob=" + dob + ", status=" + status + ", createdby=" + createdby
 				+ ", createddate=" + createddate + ", updatedby=" + updatedby + ", updateddate=" + updateddate + "]";
 	}
-}
-	
 
 	
+	}
+
+

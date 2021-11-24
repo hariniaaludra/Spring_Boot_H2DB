@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.User;
 
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
+import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
+import com.aaludra.spring.jpa.h2.validation.Uservalidation;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -33,13 +37,13 @@ public class UserController {
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUser(@RequestParam(required = false) String username) {
 		try {
-			
+
 			List<User> list = new ArrayList<User>();
-			
+
 			if (username == null) {
 				userRepository.findAll().forEach(list::add);
 			}
-		
+
 			if (list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
@@ -48,8 +52,9 @@ public class UserController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	
+
 	}
+
 	@GetMapping("/user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
 		Optional<User> userData = userRepository.findById((int) id);
@@ -60,17 +65,23 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 	@PostMapping("/user")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
-			
-			//validate
-			
-			User userobject = userRepository
-					.save(new User(0, user.getUsername(), user.getDisplayname(), user.getPassword(), user.getDob(),user.getPhoneno(), user.getStatus(),
-							user.getCreatedby(),user.getCreateddate(),user.getUpdatedby(),user.getUpdateddate()));
+
+			Uservalidation u = new Uservalidation();
+			u.validate(user);
+
+			User userobject = userRepository.save(new User(0, user.getUsername(), user.getDisplayname(),
+					user.getPassword(), user.getDob(), user.getPhoneno(), user.getStatus(), user.getCreatedby(),
+					DateUtil.getCurrentTimeStamp(), user.getUpdatedby(), user.getUpdateddate()));
 			return new ResponseEntity<>(userobject, HttpStatus.CREATED);
+		} catch (InvalidRequestException e) {
+			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -96,6 +107,7 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
 		try {
