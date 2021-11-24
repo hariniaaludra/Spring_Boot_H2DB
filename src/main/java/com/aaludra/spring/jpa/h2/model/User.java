@@ -26,7 +26,7 @@ public class User {
 	private Date dob;
 	
 	@Column(name="phoneno")
-	private int phoneno;
+	private Number phoneno;
 	
 	@Column(name="status")
 	private String status;
@@ -50,7 +50,7 @@ public class User {
 	}
 
 	public User(int id,String username,String displayname,String password,Date dob,
-			int phoneno,String status,String createdby,Timestamp createddate,String updatedby,Timestamp updateddate) {
+			Number phoneno,String status,String createdby,Timestamp createddate,String updatedby,Timestamp updateddate) {
 		this.id=id;
 		this.username=username;
 		this.displayname=displayname;
@@ -104,11 +104,11 @@ public class User {
 		this.dob = dob;
 	}
 
-	public int getPhoneno() {
+	public Number getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(int phoneno) {
+	public void setPhoneno(Number phoneno) {
 		this.phoneno = phoneno;
 	}
 

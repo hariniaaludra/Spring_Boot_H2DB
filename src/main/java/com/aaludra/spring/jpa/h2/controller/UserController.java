@@ -78,7 +78,7 @@ public class UserController {
 			return new ResponseEntity<>(userobject, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
 			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
-					HttpStatus.BAD_REQUEST);//.value(), e.getMessage()),(HttpStatus.BAD_REQUEST.value()));
+					HttpStatus.BAD_REQUEST);
 		}catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
