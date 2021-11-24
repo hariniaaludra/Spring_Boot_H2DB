@@ -19,37 +19,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aaludra.spring.jpa.h2.model.Customer;
-import com.aaludra.spring.jpa.h2.repository.CustomerRepository;
+
+import com.aaludra.spring.jpa.h2.service.CustomerHandler;
 
 @RestController
 @RequestMapping("/api")
-public class CustomerController { //
+public class CustomerController {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	CustomerHandler handler;
 
 	@GetMapping("/customer")
-	public ResponseEntity<List<Customer>> getallCustomers(@RequestParam(required = false) String createdBy) {
+	public ResponseEntity<List<Customer>> getAllcustomers(@RequestParam(required = false) String createdBy) {
 		try {
-			List<Customer> listCustomers = new ArrayList<Customer>();
-			if (createdBy == null)
-				customerRepository.findAll().forEach(listCustomers::add);
-			else
-				customerRepository.findBycreatedByContaining(createdBy).forEach(listCustomers::add);
-			if (listCustomers.isEmpty()) {
+			List<Customer> customers = handler.getAllcustomers(createdBy);
 
+			if (customers.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(HttpStatus.OK);
+
+			return new ResponseEntity<>(customers, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
 	}
 
 	@GetMapping("/customer/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
-		Optional<Customer> customerData = customerRepository.findById(id);
+		Optional<Customer> customerData = handler.getCustomerById(id);
 
 		if (customerData.isPresent()) {
 			return new ResponseEntity<>(customerData.get(), HttpStatus.OK);
@@ -61,10 +58,8 @@ public class CustomerController { //
 	@PostMapping("/customer")
 	public ResponseEntity<Customer> createcustomer(@RequestBody Customer customer) {
 		try {
-			Customer customerobj = customerRepository
-					.save(new Customer(customer.getCustname(), customer.getCustId(), customer.getCity(),
-							customer.getDob(), customer.getGstin(), customer.getStatus(), customer.getCreatedBy(),
-							customer.getCreatedDate(), customer.getUpdatedBy(), customer.getUpdatedDate()));
+			Customer customerobj = handler.createcustomer(customer);
+
 			return new ResponseEntity<>(customerobj, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -73,7 +68,7 @@ public class CustomerController { //
 
 	@PutMapping("/customer/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
-		Optional<Customer> customerData = customerRepository.findById(id);
+		Optional<Customer> customerData = handler.getCustomerById(id);
 
 		if (customerData.isPresent()) {
 			Customer customerobj = customerData.get();
@@ -87,7 +82,7 @@ public class CustomerController { //
 			customerobj.setCreatedDate(customer.getCreatedDate());
 			customerobj.setUpdatedBy(customer.getUpdatedBy());
 			customerobj.setUpdatedDate(customer.getUpdatedDate());
-			return new ResponseEntity<>(customerRepository.save(customerobj), HttpStatus.OK);
+			return new ResponseEntity<>(handler.updateCustomer(customerobj), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -96,7 +91,7 @@ public class CustomerController { //
 	@DeleteMapping("/customer/{id}")
 	public ResponseEntity<HttpStatus> deletecustomer(@PathVariable("id") long id) {
 		try {
-			customerRepository.deleteById(id);
+			handler.deletecustomer(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -106,7 +101,7 @@ public class CustomerController { //
 	@DeleteMapping("/customer")
 	public ResponseEntity<HttpStatus> deleteAllCustomer() {
 		try {
-			customerRepository.deleteAll();
+			handler.deleteAllCustomer();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -118,7 +113,7 @@ public class CustomerController { //
 
 	public ResponseEntity<List<Customer>> findBycustname() {
 		try {
-			List<Customer> customer = customerRepository.findBycustname("custname");
+			List<Customer> customer = handler.findBycustname();
 
 			if (customer.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
