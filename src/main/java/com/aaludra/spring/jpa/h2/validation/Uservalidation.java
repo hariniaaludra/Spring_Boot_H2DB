@@ -26,9 +26,7 @@ public class Uservalidation {
 		if (user.getStatus() == null) {
 			throw new InvalidRequestException("Status is mandatory");
 		}
-		if (user.getCreateddate() == null) {
-			throw new InvalidRequestException("Created Date is mandatory");
-		}
+		
 		if (user.getUpdateddate() == null) {
 			throw new InvalidRequestException("Updated date is mandatory");
 		}

@@ -22,6 +22,7 @@ import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.User;
 
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Uservalidation;
 
@@ -71,15 +72,15 @@ public class UserController {
 
 			Uservalidation u = new Uservalidation();
 			u.validate(user);
-		
+
 			User userobject = userRepository.save(new User(0, user.getUsername(), user.getDisplayname(),
 					user.getPassword(), user.getDob(), user.getPhoneno(), user.getStatus(), user.getCreatedby(),
-					user.getCreateddate(), user.getUpdatedby(), user.getUpdateddate()));
+					DateUtil.getCurrentTimeStamp(), user.getUpdatedby(), user.getUpdateddate()));
 			return new ResponseEntity<>(userobject, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
 			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 					HttpStatus.BAD_REQUEST);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
