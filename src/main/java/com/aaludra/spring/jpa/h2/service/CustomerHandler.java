@@ -15,6 +15,7 @@ import com.aaludra.spring.jpa.h2.repository.CustomerRepository;
 
 @Service
 public class CustomerHandler {
+	
 	@Inject
 	 CustomerRepository customerRepository;
 	
@@ -33,7 +34,7 @@ public class CustomerHandler {
 	public  Customer createcustomer(Customer customer) {
 		Customer customerobj = customerRepository.save(new Customer(customer.getCustname(), customer.getCustId(), customer.getCity(),
 				customer.getDob(), customer.getGstin(), customer.getStatus(), customer.getCreatedBy(),
-				customer.getCreatedDate(), customer.getUpdatedBy(), customer.getUpdatedDate(), false));
+				customer.getCreatedDate(), customer.getUpdatedBy(), customer.getUpdatedDate()));
 		return customerobj;
 	}
 	

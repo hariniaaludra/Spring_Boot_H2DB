@@ -18,7 +18,7 @@ public class Employee {
 	@Column(name = "EMP_ID")
 	private String empId;
 	@Column(name = "PHONE_NUMBER")
-	private int emPhonenumber;
+	private Number empPhonenumber;
 	@Column(name = "ADDRESS")
 	private String empAddress;
 	@Column(name = "EMP_DOJ")
@@ -38,21 +38,6 @@ public class Employee {
 
 	public Employee() {
 		
-	}
-
-	public Employee(String empName, String empId, int emPhonenumber, String empAddress, Date empDoj,
-			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,
-			boolean b) {
-		this.empName = empName;
-		this.empId = empId;
-		this.emPhonenumber = emPhonenumber;
-		this.empAddress= empAddress;
-		this.empDoj = empDoj;
-		this.status= status;
-		this.createdBy =  createdBy ;
-		this.createdDate =  createdDate;
-		this.updatedBy = updatedBy;
-		this.updatedDate = updatedDate;
 	}
 
 	public int getId() {
@@ -79,12 +64,12 @@ public class Employee {
 		this.empId = empId;
 	}
 
-	public int getEmPhonenumber() {
-		return emPhonenumber;
+	public Number getEmpPhonenumber() {
+		return empPhonenumber;
 	}
 
-	public void setEmPhonenumber(int emPhonenumber) {
-		this.emPhonenumber = emPhonenumber;
+	public void setEmpPhonenumber(Number empPhonenumber) {
+		this.empPhonenumber = empPhonenumber;
 	}
 
 	public String getEmpAddress() {
@@ -143,9 +128,29 @@ public class Employee {
 		this.updatedDate = updatedDate;
 	}
 
+	public Employee(String empName, String empId, Number empPhonenumber, String empAddress, Date empDoj,
+			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,
+			boolean b) {
+		this.empName = empName;
+		this.empId = empId;
+		this.empPhonenumber = empPhonenumber;
+		this.empAddress= empAddress;
+		this.empDoj = empDoj;
+		this.status= status;
+		this.createdBy =  createdBy ;
+		this.createdDate =  createdDate;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+	}
+
+	
+
+	
+
+
 	public String toString() {
 		return "Employee[Id = " + id + ",EMP_NAME=" + empName + ",EMP_ID =" + empId + ", PHONE_NUMBER = "
-				+ emPhonenumber + ",ADDRESS= " + empAddress + ",EMP_DOJ=" + empDoj + ",STATUS = " + status
+				+ empPhonenumber + ",ADDRESS= " + empAddress + ",EMP_DOJ=" + empDoj + ",STATUS = " + status
 				+ ",CREATED_BY = " + createdBy + ",CREATED_DATE = " + createdDate + ",UPDATED_BY =" + updatedBy
 				+ "CREATED_DATE = " + createdDate + "]";
 
