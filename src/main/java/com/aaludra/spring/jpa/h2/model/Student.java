@@ -2,7 +2,8 @@ package com.aaludra.spring.jpa.h2.model;
 
 import javax.persistence.*;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 import java.sql.Date;
 
 @Entity

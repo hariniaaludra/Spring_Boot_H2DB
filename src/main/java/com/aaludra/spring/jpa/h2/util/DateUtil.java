@@ -11,7 +11,10 @@ public class DateUtil {
 	public DateUtil() {
 
 	}
-
+	public static Timestamp getCurrentTimeStamp() {
+		java.util.Date date = new java.util.Date();
+		return new Timestamp(date.getTime());
+	}
 	public static Date convertStringToDate(String inputString) {
 
 		try {

@@ -23,9 +23,6 @@ public class Uservalidation {
 		if (user.getDisplayname() == null) {
 			throw new InvalidRequestException("Displayname is mandatory");
 		}
-		if (user.getStatus() == null) {
-			throw new InvalidRequestException("Status is mandatory");
-		}
 		
 		if (user.getUpdateddate() == null) {
 			throw new InvalidRequestException("Updated date is mandatory");
@@ -39,6 +36,8 @@ public class Uservalidation {
 		if (user.getUpdatedby().length() > 20) {
 			throw new InvalidRequestException("Updatedby length is invalid");
 		}
+		if (user.getStatus()==null) {
 
 	}
+}
 }
