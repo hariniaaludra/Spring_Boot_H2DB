@@ -1,6 +1,7 @@
 package com.aaludra.spring.jpa.h2.model;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
 
@@ -38,6 +39,7 @@ public class Product {
 	@Column(name = "UPDATED_BY")
 	private String updatedby;
 	
+	
 	@Column(name = "UPDATED_DATE")
 	private Timestamp updateddate;
 
@@ -47,8 +49,8 @@ public class Product {
 
 
 	public Product(String productname, String productcode, double price, Date expdate, Date mfgdate,
-			String status, String createdby, Timestamp createddate, String updatedby, Timestamp updatedate,
-			boolean b) {
+			String status, String createdby, Timestamp createddate, String updatedby, Timestamp updatedate
+		) {
 	this.productname=productname;
 	this.productcode=productcode;
 	this.price=price;
