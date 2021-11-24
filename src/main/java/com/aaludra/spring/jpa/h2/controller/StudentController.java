@@ -2,6 +2,7 @@ package com.aaludra.spring.jpa.h2.controller;
 
 import java.util.ArrayList;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.aaludra.spring.jpa.h2.model.Student;
 import com.aaludra.spring.jpa.h2.repository.StudentRepository;
+import com.aaludra.spring.jpa.h2.view.Studentview;
 import java.util.List;
 import java.util.Optional;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
 
 @RestController
 @RequestMapping("/api")
@@ -44,8 +47,7 @@ public class StudentController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}		
-	
+	}
 
 	@GetMapping("/students/{id}")
 	public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
@@ -58,12 +60,13 @@ public class StudentController {
 	}
 
 	@PostMapping("/students")
-	public  ResponseEntity<Student> createStudent(@RequestBody Student student) {
+	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
 		try {
+
 			Student students = studentRepository
-					.save(new Student( 0, student.getStudentname(),student.getRollnumber(),student.getCourse(),student.getDegree(),
-							student.getDob(),student.getStatus(),student.getCreatedby(),student.getCreateddate(),
-							student.getUpdatedby(),student.getUpdateddate()));
+					.save(new Student(0, student.getStudentname(), student.getRollnumber(), student.getCourse(),
+							student.getDegree(), student.getDob(), student.getStatus(), student.getCreatedby(),
+							student.getCreateddate(), student.getUpdatedby(), student.getUpdateddate()));
 			return new ResponseEntity<>(students, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -71,23 +74,23 @@ public class StudentController {
 	}
 
 	@PutMapping("/students/{id}")
-	public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Student student) {
+	public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Studentview studentview) {
 		Optional<Student> studentData = studentRepository.findById(id);
+		if (studentData.isPresent()) {
+		Student tblstudent = studentData.get();
+		
+			tblstudent.setStudentname(studentview.getStudentname());
+			tblstudent.setRollnumber(Integer.parseInt(studentview.getRollnumber()));
+			tblstudent.setCourse(studentview.getCourse());
+			tblstudent.setDegree(studentview.getDegree());
+            tblstudent.setDob(DateUtil.convertStringToDate(studentview.getDob()));
+			tblstudent.setStatus(studentview.getStatus());
+			tblstudent.setCreatedby(studentview.getCreatedby());
+			tblstudent.setCreateddate(DateUtil.convertStringToTimestamp(studentview.getCreateddate()));
+			tblstudent.setUpdatedby(studentview.getUpdatedby());
+			tblstudent.setUpdateddate(DateUtil.convertStringToTimestamp(studentview.getUpdateddate()));
 
-		if  (studentData.isPresent()) {
-			Student tblstudent = studentData.get();
-			tblstudent.setStudentname(student.getStudentname());
-			tblstudent.setRollnumber(student.getRollnumber());
-			tblstudent.setCourse(student.getCourse());
-			tblstudent.setDegree(student.getDegree());
-			tblstudent.setDob(student.getDob());
-			tblstudent.setStatus(student.getStatus());
-			tblstudent.setCreatedby(student.getCreatedby());
-			tblstudent.setCreateddate(student.getCreateddate());
-			tblstudent.setUpdatedby(student.getUpdatedby());
-			tblstudent.setUpdateddate(student.getUpdateddate());
-
-			return new ResponseEntity<>(studentRepository.save(student), HttpStatus.OK);
+			return new ResponseEntity<>(studentRepository.save(tblstudent), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -111,6 +114,5 @@ public class StudentController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
 	}
 }
