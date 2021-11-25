@@ -3,6 +3,7 @@ package com.aaludra.spring.jpa.h2.validation;
 import com.aaludra.spring.jpa.h2.enum1.StatusEnum;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.User;
+import com.aaludra.spring.jpa.h2.view.UserView;
 
 public class Uservalidation {
 	public void validate(User user) throws InvalidRequestException {
@@ -44,4 +45,5 @@ public class Uservalidation {
 		}
 
 	}
+
 }

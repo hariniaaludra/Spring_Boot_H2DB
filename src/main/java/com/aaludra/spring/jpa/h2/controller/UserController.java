@@ -22,6 +22,7 @@ import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.User;
 
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
+import com.aaludra.spring.jpa.h2.service.UserHandler;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Uservalidation;
@@ -32,32 +33,24 @@ import com.aaludra.spring.jpa.h2.validation.Uservalidation;
 public class UserController {
 
 	@Autowired
-	UserRepository userRepository;
+	UserHandler userHandler;
 
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUser(@RequestParam(required = false) String username) {
 		try {
-
-			List<User> list = new ArrayList<User>();
-
+			List<User> list = new ArrayList<>();
 			if (username == null) {
-				userRepository.findAll().forEach(list::add);
-			}
-
+				userHandler.getAllUser().forEach(list::add);}
 			if (list.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-
-			return new ResponseEntity<>(list, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);}
+			return new ResponseEntity<>(list, HttpStatus.OK);} 
+		catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);}
 		}
-
-	}
 
 	@GetMapping("/user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
-		Optional<User> userData = userRepository.findById((int) id);
+		Optional<User> userData = userHandler.getUserById((int) id);
 
 		if (userData.isPresent()) {
 			return new ResponseEntity<>(userData.get(), HttpStatus.OK);
@@ -69,13 +62,9 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
-
 			Uservalidation u = new Uservalidation();
 			u.validate(user);
-
-			User userobject = userRepository.save(new User(0, user.getUsername(), user.getDisplayname(),
-					user.getPassword(), user.getDob(), user.getPhoneno(), user.getStatus(), user.getCreatedby(),
-					DateUtil.getCurrentTimeStamp(), user.getUpdatedby(), user.getUpdateddate()));
+			User userobject = userHandler.createUser(user);
 			return new ResponseEntity<>(userobject, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
 			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
@@ -88,7 +77,7 @@ public class UserController {
 
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-		Optional<User> userData = userRepository.findById((int) id);
+		Optional<User> userData = userHandler.getUserById((int) id);
 
 		if (userData.isPresent()) {
 			User userobj = userData.get();
@@ -102,7 +91,7 @@ public class UserController {
 			userobj.setCreateddate(user.getCreateddate());
 			userobj.setUpdatedby(user.getUpdatedby());
 			userobj.setUpdateddate(user.getUpdateddate());
-			return new ResponseEntity<>(userRepository.save(userobj), HttpStatus.OK);
+			return new ResponseEntity<>(userHandler.updateUser(userobj), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -111,7 +100,7 @@ public class UserController {
 	@DeleteMapping("/user/{id}")
 	public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") long id) {
 		try {
-			userRepository.deleteById((int) id);
+			userHandler.deleteUserById((int) id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -121,7 +110,7 @@ public class UserController {
 	@DeleteMapping("/user")
 	public ResponseEntity<HttpStatus> deleteAllUser() {
 		try {
-			userRepository.deleteAll();
+			userHandler.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

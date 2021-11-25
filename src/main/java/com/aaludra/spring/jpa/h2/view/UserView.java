@@ -1,55 +1,24 @@
-package com.aaludra.spring.jpa.h2.model;
+package com.aaludra.spring.jpa.h2.view;
 
-import javax.persistence.*;
-
-import java.sql.Date;
-import java.sql.Timestamp;
-
-@Entity
-@Table(name = "TBL_USER")
-public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
-	@Column(name = "USER_NAME")
-	public String username;
-
-	@Column(name = "DISPLAY_NAME")
+public class UserView {
+	private String username;
 	private String displayname;
-
-	@Column(name = "PASSWORD")
 	private String password;
-
-	@Column(name = "DOB")
-	private Date dob;
-
-	@Column(name = "PHONENO")
-	private Number phoneno;
-
-	@Column(name = "STATUS")
+	private String dob;
+	private String phoneno;
 	private String status;
-
-	@Column(name = "CREATED_BY")
 	private String createdby;
-
-	@Column(name = "CREATED_DATE")
-	private Timestamp createddate;
-
-	@Column(name = "UPDATED_BY")
+	private String createddate;
 	private String updatedby;
-
-	@Column(name = "UPDATED_DATE")
-	private Timestamp updateddate;
-
-	public User() {
-
+	private String updateddate;
+	
+	public UserView() {
+		
 	}
 
-	public User(int id, String username, String displayname, String password, Date dob, Number phoneno, String status,
-			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
-		this.id = id;
+	public UserView(String username, String displayname, String password, String dob, String phoneno, String status,
+			String createdby, String createddate, String updatedby, String updateddate) {
+		super();
 		this.username = username;
 		this.displayname = displayname;
 		this.password = password;
@@ -60,14 +29,6 @@ public class User {
 		this.createddate = createddate;
 		this.updatedby = updatedby;
 		this.updateddate = updateddate;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {
@@ -94,19 +55,19 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
-	public Number getPhoneno() {
+	public String getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(Number phoneno) {
+	public void setPhoneno(String phoneno) {
 		this.phoneno = phoneno;
 	}
 
@@ -126,11 +87,11 @@ public class User {
 		this.createdby = createdby;
 	}
 
-	public Timestamp getCreateddate() {
+	public String getCreateddate() {
 		return createddate;
 	}
 
-	public void setCreateddate(Timestamp createddate) {
+	public void setCreateddate(String createddate) {
 		this.createddate = createddate;
 	}
 
@@ -142,16 +103,15 @@ public class User {
 		this.updatedby = updatedby;
 	}
 
-	public Timestamp getUpdateddate() {
+	public String getUpdateddate() {
 		return updateddate;
 	}
 
-	public void setUpdateddate(Timestamp updateddate) {
+	public void setUpdateddate(String updateddate) {
 		this.updateddate = updateddate;
 	}
-
 	public String toString() {
-		return "User [id= " + id + ", username=" + username + ", displayname=" + displayname + ", password=" + password
+		return "User [ username=" + username + ", displayname=" + displayname + ", password=" + password
 				+ ", dob=" + dob + ", phoneno=" + phoneno + ", status=" + status + ", createdby=" + createdby
 				+ ", createddate=" + createddate + ", updatedby=" + updatedby + ", updateddate=" + updateddate + "]";
 	}

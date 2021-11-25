@@ -25,16 +25,14 @@ public class StudentHandler {
 
 	public Optional<Student> getStudentById(long id) {
 
-		Optional<Student> studentData = studentRepository.findById(id);
-		return studentData;
+		return studentRepository.findById(id);
 	}
 
 	public Student createstudent(Student student) {
-		Student studentHandler = studentRepository
+		return studentRepository
 				.save(new Student(0, student.getStudentname(), student.getRollnumber(), student.getCourse(),
 						student.getDegree(), student.getDob(), student.getStatus(), student.getCreatedby(),
 						student.getCreateddate(), student.getUpdatedby(), student.getCreateddate()));
-		return studentHandler;
 	}
 
 	public long deletestudent(long id) {
