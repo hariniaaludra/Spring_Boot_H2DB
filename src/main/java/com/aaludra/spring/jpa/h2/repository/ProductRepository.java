@@ -6,11 +6,15 @@ import com.aaludra.spring.jpa.h2.model.Product;
 
 public interface ProductRepository extends JpaRepository <Product, Long >{
 
- List<Product> findBycreatedbyContaining(String createdby);
+ //List<Product> findBycreatedbyContaining(String createdby);
 
-	Iterable<Product> findByproductnameContaining(String productname);
+	List<Product> findByproductnameContaining(String productname);
 
-List<Product> findBycreatedby(boolean b);
+	//List<Product> findBycreatedby(String createdby);
+
+	List<Product> findBycreatedby(String createdby);
+
+//List<Product> findBycreatedby(boolean b);
 
 	//Product save(Productview productview);
 

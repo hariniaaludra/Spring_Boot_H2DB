@@ -1,6 +1,9 @@
 package com.aaludra.spring.jpa.h2.model;
 
-import java.sql.*;
+import java.sql.Timestamp;
+import java.sql.Date;
+
+
 import java.text.SimpleDateFormat;
 
 import javax.persistence.*;

@@ -22,24 +22,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aaludra.spring.jpa.h2.model.Product;
 import com.aaludra.spring.jpa.h2.repository.ProductRepository;
 import com.aaludra.spring.jpa.h2.view.Productview;
+import com.aaludra.spring.jpa.h2.util.Dateconvert;
+import com.aaludra.spring.jpa.h2.service.ProductHandler;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
 	@Autowired
-	ProductRepository productRepository;
+	ProductHandler  handler;
 
 	@GetMapping("/products")
 	public ResponseEntity<List<Product>> getAllProduct(@RequestParam(required = false) String productname) {
 		try {
-			List<Product> products = new ArrayList<>();
-
-			if (productname == null)
-				productRepository.findAll().forEach(products::add);
-
-			else
-				productRepository.findByproductnameContaining(productname).forEach(products::add);
+			List<Product> products = handler.getAllProduct(productname);
 
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -52,7 +48,7 @@ public class ProductController {
 
 	@GetMapping("/products/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
-		Optional<Product> productData = productRepository.findById(id);
+		Optional<Product> productData = handler.getProductById(id);
 
 		if (productData.isPresent()) {
 			return new ResponseEntity<>(productData.get(), HttpStatus.OK);
@@ -65,21 +61,28 @@ public class ProductController {
 	public ResponseEntity<Productview> createProduct(@RequestBody Product product) {
 		
 		try {
-			Product productobj = productRepository
-					.save(new Product(product.getProductname(), product.getProductcode(), product.getPrice(),
-							product.getExpdate(), product.getMfgdate(), product.getStatus(), product.getCreatedby(),
-							product.getCreateddate(), product.getUpdatedby(), product.getUpdatedate()));
+			Product productobj = handler.createproduct(product);
 			Productview obj=new Productview();
+			
 			obj.setProductname(productobj.getProductname());
+			
 			obj.setUpdatedby(productobj.getUpdatedby());
+			
 			obj.setProductcode(productobj.getProductcode());
+			
 			obj.setPrice(Double.toString(productobj.getPrice()));
+			
 			obj.setStatus(productobj.getStatus());
+			
 			obj.setCreatedby(productobj.getCreatedby());
+			
 			obj.setCreateddate(productobj.getCreateddate().toString());
+			
 			obj.setUpdatedate(productobj.getUpdatedate().toString());
-			obj.setMfgdate(productobj.getMfgdate().toString());
-			obj.setExpdate(productobj.getExpdate().toString());
+			
+			obj.setMfgdate(Dateconvert.convertStringToDate(productobj.getMfgdate()));
+			
+			obj.setExpdate(Dateconvert.convertStringToDate(productobj.getExpdate()));
 
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -89,7 +92,7 @@ public class ProductController {
 
 	@PutMapping("/products/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
-		Optional<Product> productData = productRepository.findById(id);
+		Optional<Product> productData = handler.getProductById(id);
 		if (productData.isPresent()) {
 			Product productobj = productData.get();
 			productobj.setProductname(product.getProductname());
@@ -102,7 +105,7 @@ public class ProductController {
 			productobj.setCreateddate(product.getCreateddate());
 			productobj.setUpdatedby(product.getUpdatedby());
 			productobj.setUpdatedate(product.getUpdatedate());
-			return new ResponseEntity<>(productRepository.save(productobj), HttpStatus.OK);
+			return new ResponseEntity<>(handler.updateProduct(productobj), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -111,7 +114,7 @@ public class ProductController {
 	@DeleteMapping("/products/{id}")
 	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") long id) {
 		try {
-			productRepository.deleteById(id);
+			handler.deleteproduct(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -121,7 +124,7 @@ public class ProductController {
 	@DeleteMapping("/products")
 	public ResponseEntity<HttpStatus> deleteAllProducts() {
 		try {
-			productRepository.deleteAll();
+			handler.deleteAllProduct();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -133,7 +136,7 @@ public class ProductController {
 
 	public ResponseEntity<List<Product>> findBycreatedby() {
 		try {
-			List<Product> products = productRepository.findBycreatedby(true);
+			List<Product> products = handler.findBycreatedby();
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}

@@ -133,9 +133,6 @@ public class Productview {
 	public void setUpdatedate(String updatedate) {
 		this.updateddate = updatedate;
 	}
-	//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-    //String strDate= formatter.format(expdate);
-
 	@Override
 	public String toString() {
 		return "Product [ProductName=" + productname + ", ProductCode=" + productcode + ", price=" + price + ",expdate="
