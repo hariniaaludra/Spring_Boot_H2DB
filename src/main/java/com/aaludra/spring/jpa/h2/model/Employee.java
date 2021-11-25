@@ -129,8 +129,7 @@ public class Employee {
 	}
 
 	public Employee(String empName, String empId, Number empPhonenumber, String empAddress, Date empDoj,
-			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,
-			boolean b) {
+			String status, String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate) {
 		this.empName = empName;
 		this.empId = empId;
 		this.empPhonenumber = empPhonenumber;

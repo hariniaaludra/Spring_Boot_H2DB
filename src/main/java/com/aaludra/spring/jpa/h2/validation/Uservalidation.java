@@ -1,5 +1,6 @@
 package com.aaludra.spring.jpa.h2.validation;
 
+import com.aaludra.spring.jpa.h2.enum1.StatusEnum;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.User;
 
@@ -23,7 +24,7 @@ public class Uservalidation {
 		if (user.getDisplayname() == null) {
 			throw new InvalidRequestException("Displayname is mandatory");
 		}
-		
+
 		if (user.getUpdateddate() == null) {
 			throw new InvalidRequestException("Updated date is mandatory");
 		}
@@ -36,8 +37,11 @@ public class Uservalidation {
 		if (user.getUpdatedby().length() > 20) {
 			throw new InvalidRequestException("Updatedby length is invalid");
 		}
-		if (user.getStatus()==null) {
+
+		StatusEnum a = StatusEnum.check(user.getStatus());
+		if (a == null) {
+			throw new InvalidRequestException("Invalid Status");
+		}
 
 	}
-}
 }
