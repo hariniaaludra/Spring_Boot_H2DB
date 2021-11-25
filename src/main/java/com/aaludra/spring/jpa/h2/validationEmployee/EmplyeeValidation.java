@@ -1,6 +1,7 @@
 package com.aaludra.spring.jpa.h2.validationEmployee;
 
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
+
 import com.aaludra.spring.jpa.h2.model.Employee;
 
 public class EmplyeeValidation {

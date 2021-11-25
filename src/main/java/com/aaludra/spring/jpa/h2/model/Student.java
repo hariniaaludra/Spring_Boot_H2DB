@@ -3,6 +3,7 @@ package com.aaludra.spring.jpa.h2.model;
 import javax.persistence.*;
 
 
+
 import java.sql.Timestamp;
 import java.sql.Date;
 
@@ -12,7 +13,7 @@ import java.sql.Date;
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 
 	@Column(name = "student_name")
 	private String studentname;
@@ -44,11 +45,13 @@ public class Student {
 	@Column(name = "updated_date")
 	private Timestamp updateddate;
 
+	
+
 	public Student() {
 
 	}
 
-	public Student(int id, String studentname, int rollnumber, String course, String degree, Date dob, String status,
+	public Student(long id, String studentname, int rollnumber, String course, String degree, Date dob, String status,
 			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
 		super();
 		this.id = id;
@@ -64,7 +67,7 @@ public class Student {
 		this.updateddate = updateddate;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
