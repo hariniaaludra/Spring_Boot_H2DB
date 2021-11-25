@@ -34,8 +34,7 @@ public class DateUtil {
 		  DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	       // you can change format of date
 	      java.util.Date date = formatter.parse(inputString);
-	      Timestamp timeStampDate = new Timestamp(date.getTime());
-		  return timeStampDate;
+	     return new Timestamp(date.getTime());
 	  }catch(Exception e) {
 		  
 	  
