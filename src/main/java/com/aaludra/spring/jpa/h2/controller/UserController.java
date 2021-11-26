@@ -60,6 +60,7 @@ public class UserController {
 		}
 	}
 
+	
 	@PostMapping("/user")
 	public ResponseEntity<?> createUser(@RequestBody User user) {
 		try {
@@ -75,6 +76,8 @@ public class UserController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	public User createUser
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
 		Optional<User> userData = userHandler.getUserById((int) id);

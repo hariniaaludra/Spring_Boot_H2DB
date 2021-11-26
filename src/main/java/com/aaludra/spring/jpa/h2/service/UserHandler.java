@@ -1,8 +1,14 @@
 package com.aaludra.spring.jpa.h2.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.aaludra.spring.jpa.h2.model.User;
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
+import com.aaludra.spring.jpa.h2.view.XmlUser;
 
 @Service
 public class UserHandler {
@@ -45,4 +52,11 @@ public class UserHandler {
 		userRepository.deleteAll();
 		return null;
 	}
+	public void testXmlToObject() throws JAXBException, FileNotFoundException {
+        File file = new File("User.xml");
+        JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        XmlUser xmluser = (XmlUser) unmarshaller.unmarshal(file);
+        System.out.println(xmluser);
+    }
 }

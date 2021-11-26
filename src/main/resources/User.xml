@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<User >
+    <username>aswathy</username>
+    <displayname>Aswathym</displayname>
+    <password>abcd</password>
+    <dob>2000-07-26</dob>
+    <phoneno>1234567892</phoneno>
+    <status>Active</status>
+    <createdBy>aaa</createdBy>
+    <updatedby>bbbb</updatedby>
+    <updateddate>2021-11-26</updateddate>
+
+
+    <username>abi</username>
+    <displayname>Abi</displayname>
+    <password>efgh</password>
+    <dob>2000-07-26</dob>
+    <phoneno>1234567892</phoneno>
+    <status>Active</status>
+    <createdBy>ddd</createdBy>
+    <updatedby>eee</updatedby>
+    <updateddate>2021-11-26</updateddate>
+    
+    <username>achu</username>
+    <displayname>Achu</displayname>
+    <password>efgh</password>
+    <dob>2000-07-26</dob>
+    <phoneno>1234567892</phoneno>
+    <status>Inactive</status>
+    <createdBy>ddd</createdBy>
+    <updatedby>eee</updatedby>
+    <updateddate>2021-11-26</updateddate>
+</User>
