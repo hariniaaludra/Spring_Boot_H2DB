@@ -17,7 +17,7 @@ public class Customer {
 	private String custname;
 	
 	@Column(name = "cust_Id")
-	private long custId;
+	private String custId;
 	
 	@Column(name = "city")
 	private String city;
@@ -48,7 +48,7 @@ public class Customer {
 	
 	
 	
-	public Customer(String custname,long custId, String city,Date dob,String Gstin,String status,String createdBy, Timestamp createdDate,String updatedBy,Timestamp updatedDate) {
+	public Customer(String custname,String custId, String city,Date dob,String Gstin,String status,String createdBy, Timestamp createdDate,String updatedBy,Timestamp updatedDate) {
 		this.custname=custname;
 		this.custId=custId;
 		this.city=city;
@@ -87,11 +87,11 @@ public class Customer {
 		this.custname = custname;
 	}
 
-	public long getCustId() {
+	public String getCustId() {
 		return custId;
 	}
 
-	public void setCustId(long custId) {
+	public void setCustId(String custId) {
 		this.custId = custId;
 	}
 
