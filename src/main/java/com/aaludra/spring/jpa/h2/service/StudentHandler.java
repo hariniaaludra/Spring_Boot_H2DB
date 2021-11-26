@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.aaludra.spring.jpa.h2.model.Student;
 import com.aaludra.spring.jpa.h2.repository.StudentRepository;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -25,14 +27,19 @@ public class StudentHandler {
 
 	public Optional<Student> getStudentById(long id) {
 
+
 		return studentRepository.findById(id);
+
+
 	}
 
 	public Student createstudent(Student student) {
-		return studentRepository
-				.save(new Student(0, student.getStudentname(), student.getRollnumber(), student.getCourse(),
+	
+		return studentRepository.save(new Student(0, student.getStudentname(), student.getRollnumber(), student.getCourse(),
 						student.getDegree(), student.getDob(), student.getStatus(), student.getCreatedby(),
-						student.getCreateddate(), student.getUpdatedby(), student.getCreateddate()));
+						DateUtil.getCurrentTimeStamp(), student.getUpdatedby(), student.getCreateddate()));
+		
+
 	}
 
 	public long deletestudent(long id) {

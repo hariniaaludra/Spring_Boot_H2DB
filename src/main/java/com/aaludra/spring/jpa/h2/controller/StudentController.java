@@ -1,6 +1,7 @@
 package com.aaludra.spring.jpa.h2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Student;
 import com.aaludra.spring.jpa.h2.service.StudentHandler;
 import com.aaludra.spring.jpa.h2.view.Studentview;
 import java.util.List;
 import java.util.Optional;
+
 import com.aaludra.spring.jpa.h2.util.DateUtil;
+import com.aaludra.spring.jpa.h2.validation.StudentValidation;
+import com.aaludra.spring.jpa.h2.validationEmployee.ErrorMesseges;
 
 @RestController
 @RequestMapping("/api")
@@ -53,14 +59,18 @@ public class StudentController {
 	}
 
 	@PostMapping("/students")
-	public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+	public ResponseEntity<?> createStudent(@RequestBody Student student) {
 		try {
-
+			StudentValidation stu = new StudentValidation();
+			stu.validate(student);
 			Student students = studentHandler.createstudent(student);
-
 			return new ResponseEntity<>(students, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}catch(InvalidRequestException e) {
+			return new ResponseEntity<>(new ErrorMesseges(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+					HttpStatus.BAD_REQUEST);
+			} catch (Exception e) {
+				e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -68,7 +78,7 @@ public class StudentController {
 	public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Studentview studentview) {
 		Optional<Student> studentData = studentHandler.getStudentById(id);
 		if (studentData.isPresent()) {
-			Student tblstudent = studentData.get();
+		Student tblstudent=studentData.get();
 
 			tblstudent.setStudentname(studentview.getStudentname());
 			tblstudent.setRollnumber(Integer.parseInt(studentview.getRollnumber()));

@@ -26,6 +26,7 @@ import com.aaludra.spring.jpa.h2.service.UserHandler;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Uservalidation;
+import com.aaludra.spring.jpa.h2.view.UserView;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -74,11 +75,9 @@ public class UserController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
 		Optional<User> userData = userHandler.getUserById((int) id);
-
 		if (userData.isPresent()) {
 			User userobj = userData.get();
 			userobj.setUsername(user.getUsername());
@@ -91,6 +90,7 @@ public class UserController {
 			userobj.setCreateddate(user.getCreateddate());
 			userobj.setUpdatedby(user.getUpdatedby());
 			userobj.setUpdateddate(user.getUpdateddate());
+		
 			return new ResponseEntity<>(userHandler.updateUser(userobj), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
