@@ -1,7 +1,6 @@
 package com.aaludra.spring.jpa.h2.controller;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Customer;
 
 import com.aaludra.spring.jpa.h2.service.CustomerHandler;
+import com.aaludra.spring.jpa.h2.util.CustDateUtils;
+
+import com.aaludra.spring.jpa.h2.validationCustomer.CustomerValidation;
+
+import com.aaludra.spring.jpa.h2.validationCustomer.ErrorMessages;
+import com.aaludra.spring.jpa.h2.view.CustomerView;
+
 
 @RestController
 @RequestMapping("/api")
@@ -57,32 +64,55 @@ public class CustomerController {
 	}
 
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> createcustomer(@RequestBody Customer customer) {
+	public ResponseEntity<?> createcustomer(@RequestBody Customer customer) {
+		
 		try {
+			CustomerValidation customerval=new CustomerValidation();
+			customerval.validate(customer);
+			
 			Customer customerobj = handler.createcustomer(customer);
+			CustomerView viewobj=new CustomerView();
+			
+			viewobj.setCustname(customerobj.getCustname());
+			viewobj.setCustId(customerobj.getCustId());
+			viewobj.setCity(customerobj.getCity());
+			viewobj.setDob(CustDateUtils.convertstringtodate(customerobj.getDob()));
+			viewobj.setGstin(customerobj.getGstin());
+			viewobj.setStatus(customerobj.getStatus());
+			viewobj.setCreatedBy(customerobj.getCreatedBy());
+			viewobj.setCreatedDate(customerobj.getCreatedDate().toString());
+			viewobj.setUpdatedBy(customerobj.getUpdatedBy());
+			viewobj.setUpdatedDate(customerobj.getUpdatedDate().toString());
+			
+			
 
 			return new ResponseEntity<>(customerobj, HttpStatus.CREATED);
-		} catch (Exception e) {
+			
+		}catch(InvalidRequestException e) {
+			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(),e.getMessage()),HttpStatus.BAD_REQUEST);
+		}
+		catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@PutMapping("/customer/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
+	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") int id, @RequestBody CustomerView customerview) {
 		Optional<Customer> customerData = handler.getCustomerById(id);
 
 		if (customerData.isPresent()) {
 			Customer customerobj = customerData.get();
-			customerobj.setCustname(customer.getCustname());
-			customerobj.setCustId(customer.getCustId());
-			customerobj.setCity(customer.getCity());
-			customerobj.setDob(customer.getDob());
-			customerobj.setGstin(customer.getGstin());
-			customerobj.setStatus(customer.getStatus());
-			customerobj.setCreatedBy(customer.getCreatedBy());
-			customerobj.setCreatedDate(customer.getCreatedDate());
-			customerobj.setUpdatedBy(customer.getUpdatedBy());
-			customerobj.setUpdatedDate(customer.getUpdatedDate());
+			customerobj.setCustname(customerview.getCustname());
+			customerobj.setCustId( customerview.getCustId());
+			customerobj.setCity(customerview.getCity());
+			customerobj.setDob(CustDateUtils.convertStringToDate(customerview.getDob()));
+			customerobj.setGstin(customerview.getGstin());
+			customerobj.setStatus(customerview.getStatus());
+			customerobj.setCreatedBy(customerview.getCreatedBy());
+			customerobj.setCreatedDate(CustDateUtils.convertStringToTimestamp(customerview.getCreatedDate()));
+			customerobj.setUpdatedBy(customerview.getUpdatedBy());
+			customerobj.setUpdatedDate(CustDateUtils.convertStringToTimestamp(customerview.getUpdatedDate()));
+			
 			return new ResponseEntity<>(handler.updateCustomer(customerobj), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
