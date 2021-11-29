@@ -23,10 +23,8 @@ import com.aaludra.spring.jpa.h2.model.Customer;
 
 import com.aaludra.spring.jpa.h2.service.CustomerHandler;
 import com.aaludra.spring.jpa.h2.util.CustDateUtils;
-
-import com.aaludra.spring.jpa.h2.validationCustomer.CustomerValidation;
-
-import com.aaludra.spring.jpa.h2.validationCustomer.ErrorMessages;
+import com.aaludra.spring.jpa.h2.validation.CustomerValidation;
+import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.view.CustomerView;
 
 
@@ -83,6 +81,8 @@ public class CustomerController {
 			viewobj.setCreatedDate(customerobj.getCreatedDate().toString());
 			viewobj.setUpdatedBy(customerobj.getUpdatedBy());
 			viewobj.setUpdatedDate(customerobj.getUpdatedDate().toString());
+			viewobj.setGender(customerobj.getGender());
+			
 			
 			
 
@@ -112,6 +112,7 @@ public class CustomerController {
 			customerobj.setCreatedDate(CustDateUtils.convertStringToTimestamp(customerview.getCreatedDate()));
 			customerobj.setUpdatedBy(customerview.getUpdatedBy());
 			customerobj.setUpdatedDate(CustDateUtils.convertStringToTimestamp(customerview.getUpdatedDate()));
+			customerobj.setGender(customerview.getGender());
 			
 			return new ResponseEntity<>(handler.updateCustomer(customerobj), HttpStatus.OK);
 		} else {

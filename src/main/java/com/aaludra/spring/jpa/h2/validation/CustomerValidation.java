@@ -1,10 +1,11 @@
-package com.aaludra.spring.jpa.h2.validationCustomer;
+package com.aaludra.spring.jpa.h2.validation;
 
+import com.aaludra.spring.jpa.h2.enum1.CustEnum;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Customer;
 
 public class CustomerValidation {
-	enum GenderCondition { MALE,FEMALE};
+	
      public void validate(Customer customer) throws InvalidRequestException{
     	 if(customer.getCustname()==null) {
     		 throw new InvalidRequestException("Name is Mandatory");
@@ -30,7 +31,13 @@ public class CustomerValidation {
     	 if(customer.getDob()==null) {
     		 throw new InvalidRequestException("Dob is Mandatory");
     	 }
-    	
+    	 if(customer.getGender()==null) {
+    		 throw new InvalidRequestException("gender is mandatory");
+    	 }
+    	CustEnum ab=CustEnum.check(customer.getGender());
+    	if(ab==null) {
+    	throw new InvalidRequestException("Invalid gender");
+    	}
     	 
     	 
      }

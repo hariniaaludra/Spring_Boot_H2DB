@@ -34,7 +34,7 @@ public class CustomerHandler {
 	public  Customer createcustomer(Customer customer) {
 		Customer customerobj = customerRepository.save(new Customer(customer.getCustname(), customer.getCustId(), customer.getCity(),
 				customer.getDob(), customer.getGstin(), customer.getStatus(), customer.getCreatedBy(),
-				customer.getCreatedDate(), customer.getUpdatedBy(), customer.getUpdatedDate()));
+				customer.getCreatedDate(), customer.getUpdatedBy(), customer.getUpdatedDate(),customer.getGender()));
 		return customerobj;
 	}
 	

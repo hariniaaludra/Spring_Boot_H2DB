@@ -1,75 +1,67 @@
 package com.aaludra.spring.jpa.h2.model;
 
-
 import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
 
 @Entity
-@Table (name = "tbl_Customer") 
+@Table(name = "tbl_Customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
 	@Column(name = "cust_name")
 	private String custname;
-	
+
 	@Column(name = "cust_Id")
 	private String custId;
-	
+
 	@Column(name = "city")
 	private String city;
-	
+
 	@Column(name = "dob")
 	private Date dob;
-	
+
 	@Column(name = "Gstin")
 	private String Gstin;
-	
+
 	@Column(name = "status")
 	private String status;
-	
+
 	@Column(name = "created_by")
 	private String createdBy;
-	
+
 	@Column(name = "created_date")
 	private Timestamp createdDate;
-	
+
 	@Column(name = "updated_by")
 	private String updatedBy;
-	
+
 	@Column(name = "updated_date")
 	private Timestamp updatedDate;
 	
+	@Column(name = "gender")
+	private String gender;
+
 	public Customer() {
 	}
-	
-	
-	
-	public Customer(String custname,String custId, String city,Date dob,String Gstin,String status,String createdBy, Timestamp createdDate,String updatedBy,Timestamp updatedDate) {
-		this.custname=custname;
-		this.custId=custId;
-		this.city=city;
-		this.dob=dob;
-		this.Gstin=Gstin;
-		this.status=status;
-		this.createdBy=createdBy;
-		this.createdDate=createdDate;
-		this.updatedBy=updatedBy;
-		this.updatedDate=updatedDate;
+
+	public Customer(String custname, String custId, String city, Date dob, String Gstin, String status,
+			String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,String gender) {
+		this.custname = custname;
+		this.custId = custId;
+		this.city = city;
+		this.dob = dob;
+		this.Gstin = Gstin;
+		this.status = status;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.gender=gender;
 	}
-
-	
-	
-	
-
-
-
-	
-
-
 
 	public long getId() {
 		return id;
@@ -158,14 +150,23 @@ public class Customer {
 	public void setUpdatedDate(Timestamp updatedDate) {
 		this.updatedDate = updatedDate;
 	}
+	
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", cust_name=" + custname + ", cust_Id=" + custId + ", city=" + city + ", dob="
+		return "Customer [id=" + id + ", custname=" + custname + ", custId=" + custId + ", city=" + city + ", dob="
 				+ dob + ", Gstin=" + Gstin + ", status=" + status + ", createdBy=" + createdBy + ", createdDate="
-				+ createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + "]";
+				+ createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + ", gender=" + gender
+				+ "]";
 	}
-
 
 	
 }
