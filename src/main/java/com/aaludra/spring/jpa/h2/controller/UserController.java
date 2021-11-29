@@ -77,7 +77,7 @@ public class UserController {
 		}
 	}
 	
-	public User createUser
+	//public User createUser
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
 		Optional<User> userData = userHandler.getUserById((int) id);

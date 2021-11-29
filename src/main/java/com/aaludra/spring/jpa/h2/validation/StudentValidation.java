@@ -1,5 +1,7 @@
 package com.aaludra.spring.jpa.h2.validation;
 
+import com.aaludra.spring.jpa.h2.enum1.CourseEnum;
+import com.aaludra.spring.jpa.h2.enum1.DegreeEnum;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Student;
 
@@ -31,6 +33,14 @@ public class StudentValidation {
 		}
 		if (student.getUpdatedby().length() > 25) {
 			throw new InvalidRequestException("Updatedby length is invalid");
+		}
+		CourseEnum b = CourseEnum.checkCourse(student.getCourse());
+		if (b==null) {
+			throw new InvalidRequestException("Invalid Course");
+		}
+		DegreeEnum c = DegreeEnum.check(student.getDegree());
+		if (c==null) {
+			throw new InvalidRequestException("Invalid Degree");
 		}
 
 	}
