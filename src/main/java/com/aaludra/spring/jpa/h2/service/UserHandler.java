@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.aaludra.spring.jpa.h2.enum1.StatusEnum;
 import com.aaludra.spring.jpa.h2.model.User;
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
-import com.aaludra.spring.jpa.h2.view.XmlUser;
+import com.aaludra.spring.jpa.h2.view.Userinput;
 
 @Service
 public class UserHandler {
@@ -25,24 +27,27 @@ public class UserHandler {
 	UserRepository userRepository;
 
 	public List<User> getAllUser() {
-			List<User> list = new ArrayList<>();
-			userRepository.findAll().forEach(list::add);
-			return list;
+		List<User> list = new ArrayList<>();
+		userRepository.findAll().forEach(list::add);
+		return list;
 	}
-	
+
 	public Optional<User> getUserById(long id) {
 		return userRepository.findById((int) id);
 	}
+
 	public User createUser(User user) {
-		return userRepository.save(new User(0, user.getUsername(), user.getDisplayname(),
-				user.getPassword(), user.getDob(), user.getPhoneno(), user.getStatus(), user.getCreatedby(),
-				DateUtil.getCurrentTimeStamp(), user.getUpdatedby(), user.getUpdateddate()));
+		return userRepository.save(new User(0, user.getUsername(), user.getDisplayname(), user.getPassword(),
+				user.getDob(), user.getPhoneno(), user.getStatus(), user.getCreatedby(), DateUtil.getCurrentTimeStamp(),
+				user.getUpdatedby(), user.getUpdateddate()));
 	}
+
 	public User updateUser(User userobj) {
 		userRepository.save(userobj);
-		
+
 		return userobj;
 	}
+
 	public long deleteUserById(long id) {
 		userRepository.deleteById((int) id);
 		return id;
@@ -52,11 +57,21 @@ public class UserHandler {
 		userRepository.deleteAll();
 		return null;
 	}
+
 	public void testXmlToObject() throws JAXBException, FileNotFoundException {
-        File file = new File("User.xml");
-        JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        XmlUser xmluser = (XmlUser) unmarshaller.unmarshal(file);
-        System.out.println(xmluser);
-    }
+		File file = new File("userinput.xml");
+		JAXBContext jaxbContext = JAXBContext.newInstance(Userinput.class);
+
+		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		Userinput que = (Userinput) jaxbUnmarshaller.unmarshal(file);
+
+		System.out.println(que.getId() + " " + que.getUsername() + " " + que.getDisplayname() + " " + que.getPassword()
+				+ " " + que.getDob() + " " + que.getPhoneno());
+
+		userRepository.save(new User(0, que.getUsername(), que.getDisplayname(), que.getPassword(), null,
+				Long.valueOf(que.getPhoneno()), StatusEnum.Active.name(), "Admin", DateUtil.getCurrentTimeStamp(),
+				"Admin", DateUtil.getCurrentTimeStamp()));
+
+	}
+
 }

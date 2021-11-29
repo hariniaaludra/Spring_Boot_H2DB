@@ -26,7 +26,7 @@ public class User {
 	private Date dob;
 
 	@Column(name = "PHONENO")
-	private Number phoneno;
+	private Long phoneno;
 
 	@Column(name = "STATUS")
 	private String status;
@@ -47,7 +47,7 @@ public class User {
 
 	}
 
-	public User(int id, String username, String displayname, String password, Date dob, Number phoneno, String status,
+	public User(int id, String username, String displayname, String password, Date dob, Long phoneno, String status,
 			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
 		this.id = id;
 		this.username = username;
@@ -102,11 +102,11 @@ public class User {
 		this.dob = dob;
 	}
 
-	public Number getPhoneno() {
+	public Long getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(Number phoneno) {
+	public void setPhoneno(Long phoneno) {
 		this.phoneno = phoneno;
 	}
 
