@@ -14,6 +14,8 @@ public interface ProductRepository extends JpaRepository <Product, Long >{
 
 	List<Product> findBycreatedby(String createdby);
 
+	Product save(String string);
+
 //List<Product> findBycreatedby(boolean b);
 
 	//Product save(Productview productview);

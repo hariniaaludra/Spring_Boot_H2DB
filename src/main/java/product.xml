@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products id="1">
+	<productname> rice </productname>
+	<productcode> id101</productcode>
+	<price> 100</price>
+	<expdate>"2021-10-11"</expdate>
+	<mfgdate>"2020-01-23"</mfgdate>
+	<status> fiber</status>
+	<updateddate>"2020-11-29"</updateddate>
+	<createddate>"2020-11-29"</createddate>
+	<updatedby> jack </updatedby>
+	<createdby> jack</createdby>
+</products>

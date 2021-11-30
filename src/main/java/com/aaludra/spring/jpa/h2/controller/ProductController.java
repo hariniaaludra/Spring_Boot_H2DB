@@ -1,11 +1,13 @@
 package com.aaludra.spring.jpa.h2.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-import javax.swing.text.DateFormatter;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,24 +21,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Product;
-import com.aaludra.spring.jpa.h2.repository.ProductRepository;
-import com.aaludra.spring.jpa.h2.view.Productview;
-import com.aaludra.spring.jpa.h2.util.Dateconvert;
 import com.aaludra.spring.jpa.h2.service.ProductHandler;
+import com.aaludra.spring.jpa.h2.util.Dateconvert;
+import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
+import com.aaludra.spring.jpa.h2.validation.Productvalidation;
+import com.aaludra.spring.jpa.h2.view.Productsxml;
+import com.aaludra.spring.jpa.h2.view.Productview;
 
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
 	@Autowired
-	ProductHandler  handler;
+	ProductHandler handler;
 
 	@GetMapping("/products")
 	public ResponseEntity<List<Product>> getAllProduct(@RequestParam(required = false) String productname) {
 		try {
 			List<Product> products = handler.getAllProduct(productname);
-
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
@@ -58,33 +63,38 @@ public class ProductController {
 	}
 
 	@PostMapping("/products")
-	public ResponseEntity<Productview> createProduct(@RequestBody Product product) {
-		
+	public ResponseEntity<?> createProduct(@RequestBody Product product) {
+
 		try {
 			Product productobj = handler.createproduct(product);
-			Productview obj=new Productview();
-			
+			Productview obj = new Productview();
+			Productvalidation prt = new Productvalidation();
+			prt.Validat(product);
+
 			obj.setProductname(productobj.getProductname());
-			
+
 			obj.setUpdatedby(productobj.getUpdatedby());
-			
+
 			obj.setProductcode(productobj.getProductcode());
-			
+
 			obj.setPrice(Double.toString(productobj.getPrice()));
-			
+
 			obj.setStatus(productobj.getStatus());
-			
+
 			obj.setCreatedby(productobj.getCreatedby());
-			
+
 			obj.setCreateddate(productobj.getCreateddate().toString());
-			
+
 			obj.setUpdatedate(productobj.getUpdatedate().toString());
-			
-			obj.setMfgdate(Dateconvert.convertStringToDate(productobj.getMfgdate()));
-			
-			obj.setExpdate(Dateconvert.convertStringToDate(productobj.getExpdate()));
+
+			obj.setMfgdate(Dateconvert.convertDateToString(productobj.getMfgdate()));
+
+			obj.setExpdate(Dateconvert.convertDateToString(productobj.getExpdate()));
 
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
+		} catch (InvalidRequestException e) {
+			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
+					HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
@@ -130,6 +140,16 @@ public class ProductController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+
+	@PostMapping("/products/process")
+	public ResponseEntity<Productsxml> createprocess() {
+		try {
+			 handler.testXmlToObject();
+		} catch (FileNotFoundException | JAXBException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@GetMapping("/products/createdby")
