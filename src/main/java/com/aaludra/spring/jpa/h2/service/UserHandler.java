@@ -20,6 +20,7 @@ import com.aaludra.spring.jpa.h2.model.User;
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.view.Userinput;
+import com.aaludra.spring.jpa.h2.view.Userslist;
 
 @Service
 public class UserHandler {
@@ -65,12 +66,17 @@ public class UserHandler {
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		Userinput que = (Userinput) jaxbUnmarshaller.unmarshal(file);
 
-		System.out.println(que.getId() + " " + que.getUsername() + " " + que.getDisplayname() + " " + que.getPassword()
-				+ " " + que.getDob() + " " + que.getPhoneno());
-
-		userRepository.save(new User(0, que.getUsername(), que.getDisplayname(), que.getPassword(), null,
-				Long.valueOf(que.getPhoneno()), StatusEnum.Active.name(), "Admin", DateUtil.getCurrentTimeStamp(),
-				"Admin", DateUtil.getCurrentTimeStamp()));
+		System.out.println(que.getId() ); 
+		List<Userslist> list = que.getUserslist();
+		for (Userslist usr : list) {
+			System.out.println(usr.getUsername() + " " + usr.getDisplayname() + " " + usr.getPassword() + " " + usr.getDob() + " "
+					+ usr.getPhoneno() + " " + usr.getStatus() + " " + usr.getCreatedby() + " " + usr.getCreateddate()
+					+ " " + usr.getUpdatedby() + " " + usr.getUpdateddate());
+			
+			userRepository.save(new User(0, usr.getUsername(), usr.getDisplayname(), usr.getPassword(), null,
+					Long.valueOf(usr.getPhoneno()), StatusEnum.Active.name(), "Admin", DateUtil.getCurrentTimeStamp(),
+					"Admin", DateUtil.getCurrentTimeStamp()));
+		}
 
 	}
 

@@ -1,11 +1,113 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userinput id="5">
-    <username>aaa</username>
-    <displayname>aswathy</displayname>
-    <password>abcd</password>
-    <phoneno>1236547893</phoneno>
-    <dob>1999-12-12</dob> 
-    
+<userinput >
+	
+	<userslist>
+	<username>aswathy</username>    
+		<displayname>aswathy</displayname>
+		<password>abcd</password>
+		<phoneno>1236547893</phoneno>
+		<dob>1997-07-26</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>abii</username>
+		<displayname>abii</displayname>
+		<password>abcd</password>
+		<phoneno>9856321472</phoneno>
+		<dob>1999-04-28</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>sam</username>
+		<displayname>sam</displayname>
+		<password>abcd</password>
+		<phoneno>1236547893</phoneno>
+		<dob>2008-06-17</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>ram</username>
+		<displayname>ram</displayname>
+		<password>abcd</password>
+		<phoneno>7562189453</phoneno>
+		<dob>2002-08-09</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>sim</username>
+		<displayname>sim</displayname>
+		<password>abcd</password>
+		<phoneno>8794562135</phoneno>
+		<dob>1999-12-12</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>wow</username>
+		<displayname>wow</displayname>
+		<password>abcd</password>
+		<phoneno>1236547893</phoneno>
+		<dob>1998-01-20</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>raj</username>
+		<displayname>raj</displayname>
+		<password>abcd</password>
+		<phoneno>8546321978</phoneno>
+		<dob>1991-08-03</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>vishnu</username>
+		<displayname>vishnu</displayname>
+		<password>abcd</password>
+		<phoneno>8547985632</phoneno>
+		<dob>1999-12-12</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>bala</username>
+		<displayname>bala</displayname>
+		<password>abcd</password>
+		<phoneno>9517538526</phoneno>
+		<dob>1999-12-12</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>gom</username>
+		<displayname>gom</displayname>
+		<password>abcd</password>
+		<phoneno>75698412587</phoneno>
+		<dob>1995-07-12</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>hari</username>
+		<displayname>hari</displayname>
+		<password>abcd</password>
+		<phoneno>9537551286</phoneno>
+		<dob>1998-09-12</dob>
+	</userslist>
+	
+	
+	<userslist>
+	<username>harini</username>
+		<displayname>harini</displayname>
+		<password>abcd</password>
+		<phoneno>1236547893</phoneno>
+		<dob>2000-12-12</dob>
+	</userslist>
+	
 </userinput>
 
 
