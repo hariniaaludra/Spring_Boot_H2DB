@@ -87,9 +87,9 @@ public class ProductController {
 
 			obj.setUpdatedate(productobj.getUpdatedate().toString());
 
-			obj.setMfgdate(Dateconvert.convertDateToString(productobj.getMfgdate()));
+			//obj.setMfgdate(Dateconvert.convertDateToString(productobj.getMfgdate()));
 
-			obj.setExpdate(Dateconvert.convertDateToString(productobj.getExpdate()));
+			//obj.setExpdate(Dateconvert.convertDateToString(productobj.getExpdate()));
 
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {

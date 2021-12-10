@@ -72,6 +72,20 @@ public class UserController {
 		
 		return null ;
 	}
+	
+	@PostMapping("/user/process/json")
+	public ResponseEntity<Userinput> testjsonToObject() {
+		try {
+			userHandler.testjsonToObject();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return null ;
+	}
+	
 
 	@PostMapping("/user")
 	public ResponseEntity<?> createUser(@RequestBody User user) {

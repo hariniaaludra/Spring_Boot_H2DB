@@ -28,14 +28,6 @@ class UserHandlerTest {
 		list.get(7).setCreateddate(DateUtil.getCurrentTimeStamp());
 		list.get(8).setUpdatedby("bbb");
 		list.get(9).setUpdateddate(DateUtil.convertStringToTimestamp("2021-09-12"));
-		
-		
-		
-		
 	
 	}
-
-	//public void getIdTest() {
-		
-	}
-//}
+}
