@@ -48,20 +48,27 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(String custname, String custId, String city, Date dob, String Gstin, String status,
-			String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate,String gender) {
+	
+	
+
+	public Customer( String custname, String custId, String city, Date dob, String gstin, String status,
+			String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate, String gender) {
+		
 		this.custname = custname;
 		this.custId = custId;
 		this.city = city;
 		this.dob = dob;
-		this.Gstin = Gstin;
+		Gstin = gstin;
 		this.status = status;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
-		this.gender=gender;
+		this.gender = gender;
 	}
+
+
+
 
 	public long getId() {
 		return id;
@@ -167,6 +174,8 @@ public class Customer {
 				+ createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + ", gender=" + gender
 				+ "]";
 	}
+
+	
 
 	
 }
