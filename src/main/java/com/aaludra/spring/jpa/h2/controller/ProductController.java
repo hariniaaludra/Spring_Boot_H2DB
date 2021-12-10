@@ -28,6 +28,7 @@ import com.aaludra.spring.jpa.h2.service.ProductHandler;
 import com.aaludra.spring.jpa.h2.util.Dateconvert;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Productvalidation;
+import com.aaludra.spring.jpa.h2.view.Productinput;
 import com.aaludra.spring.jpa.h2.view.Productsxml;
 import com.aaludra.spring.jpa.h2.view.Productview;
 
@@ -87,9 +88,9 @@ public class ProductController {
 
 			obj.setUpdatedate(productobj.getUpdatedate().toString());
 
-			obj.setMfgdate(Dateconvert.convertDateToString(productobj.getMfgdate()));
+			obj.setMfgdate(Dateconvert.convertStringToDate(productobj.getMfgdate()));
 
-			obj.setExpdate(Dateconvert.convertDateToString(productobj.getExpdate()));
+			obj.setExpdate(Dateconvert.convertStringToDate(productobj.getExpdate()));
 
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
@@ -142,12 +143,13 @@ public class ProductController {
 
 	}
 
-	@PostMapping("/products/process")
-	public ResponseEntity<Productsxml> createprocess() {
+	@PostMapping("/products/process/xml")
+	public ResponseEntity<Productinput> testXmlToObject(){
 		try {
 			 handler.testXmlToObject();
 		} catch (FileNotFoundException | JAXBException e) {
 			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
 	}
