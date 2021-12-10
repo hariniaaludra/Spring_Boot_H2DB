@@ -2,6 +2,8 @@ package com.aaludra.spring.jpa.h2.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,9 @@ import com.aaludra.spring.jpa.h2.util.Dateconvert;
 import com.aaludra.spring.jpa.h2.view.Productinput;
 import com.aaludra.spring.jpa.h2.view.Productsxml;
 import com.aaludra.spring.jpa.h2.view.Productview;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class ProductHandler {
@@ -74,6 +79,22 @@ public class ProductHandler {
 		productRepository.save(productobj);
 		return productobj;
 	}
+	private Product buildProduct(Productview Productview) {
+        Product tblpd = new Product();
+
+tblpd.setProductname(Productview.getProductname());
+tblpd.setProductcode((Productview.getProductcode()));
+tblpd.setPrice(Double.parseDouble(Productview.getPrice()));
+tblpd.setExpdate(DateUtil.convertStringToDate(Productview.getExpdate()));
+tblpd.setMfgdate(DateUtil.convertStringToDate(Productview.getMfgdate()));
+tblpd.setStatus(Productview.getStatus());
+tblpd.setCreatedby(Productview.getCreatedby());
+tblpd.setCreateddate(DateUtil.convertStringToTimestamp(Productview.getCreateddate()));
+tblpd.setUpdatedby(Productview.getUpdatedby());
+tblpd.setUpdatedate(DateUtil.convertStringToTimestamp(Productview.getUpdatedate()));
+
+return tblpd;
+}
 
 	public void testXmlToObject() throws JAXBException, FileNotFoundException {
 		
@@ -95,4 +116,26 @@ public class ProductHandler {
 					 pr.getUpdatedby(),DateUtil.convertStringToTimestamp (pr.getUpdateddate()))); 
          ulist.add(pr);
 	}
-}}
+}
+	public void testJsonToObject() throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		Productview productview=new Productview() ;
+		try {
+			productview= mapper.readValue(new File("product.json"),Productview.class);
+			Product product=this.buildProduct(productview);
+			product.setCreatedby("suriya");
+			product.setUpdatedby("suriya");
+			product.setCreateddate(DateUtil.getCurrentTimeStamp());
+			product.setUpdatedate(DateUtil.getCurrentTimeStamp());
+	            System.out.println(product);
+	            productRepository.save(product);
+	        }catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        System.out.println(productview);
+	        
+		}
+		
+		
+	}
+	

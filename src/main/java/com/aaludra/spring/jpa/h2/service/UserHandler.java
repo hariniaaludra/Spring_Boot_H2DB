@@ -60,24 +60,31 @@ public class UserHandler {
 	}
 
 	public void testXmlToObject() throws JAXBException, FileNotFoundException {
-		File file = new File("userinput.xml");
+		File file = new File("E:\\Git\\new\\Spring_Boot_H2DB\\userinput.xml");
 		JAXBContext jaxbContext = JAXBContext.newInstance(Userinput.class);
 
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		Userinput que = (Userinput) jaxbUnmarshaller.unmarshal(file);
 
-		System.out.println(que.getId() ); 
-		List<Userslist> list = que.getUserslist();
-		for (Userslist usr : list) {
-			System.out.println(usr.getUsername() + " " + usr.getDisplayname() + " " + usr.getPassword() + " " + usr.getDob() + " "
-					+ usr.getPhoneno() + " " + usr.getStatus() + " " + usr.getCreatedby() + " " + usr.getCreateddate()
-					+ " " + usr.getUpdatedby() + " " + usr.getUpdateddate());
-			
-			userRepository.save(new User(0, usr.getUsername(), usr.getDisplayname(), usr.getPassword(), null,
-					Long.valueOf(usr.getPhoneno()), StatusEnum.Active.name(), "Admin", DateUtil.getCurrentTimeStamp(),
-					"Admin", DateUtil.getCurrentTimeStamp()));
-		}
+		System.out.println(que.getId());
 
+		List<Userslist> list = que.getUserslist();
+		List<Userslist> ulist = new ArrayList<>();
+		
+
+		for (Userslist usr : list) {
+			System.out.println(usr.getUsername() + " " + usr.getDisplayname() + " " + usr.getPassword() + " "
+					+ usr.getDob() + " " + usr.getPhoneno() + " " + usr.getStatus() + " " + usr.getCreatedby() + " "
+					+ usr.getCreateddate() + " " + usr.getUpdatedby() + " " + usr.getUpdateddate());
+			
+			ulist.add(usr);
+
+			userRepository.save(new User(0, usr.getUsername(), usr.getDisplayname(), usr.getPassword(),
+			null,Long.valueOf(usr.getPhoneno()), StatusEnum.Active.name(), "Admin",
+			 DateUtil.getCurrentTimeStamp(),
+			 "Admin", DateUtil.getCurrentTimeStamp()));
+		}
+	
 	}
 
 }

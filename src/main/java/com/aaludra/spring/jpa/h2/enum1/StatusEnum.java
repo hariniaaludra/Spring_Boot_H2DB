@@ -1,19 +1,18 @@
 package com.aaludra.spring.jpa.h2.enum1;
 
 public enum StatusEnum {
-Active,Inactive;
+Active("Active"),Inactive("Inactive");
 
-	//String action;
-	//String symbol;
+	String action;
+	
 
-	//StatusEnum(String action, String symbol) {
-		//this.action=action;
-		//this.symbol=symbol;	
-	//}
+	StatusEnum(String action) {
+		this.action=action;
+			}
 	
 	public static StatusEnum check(String status) {
 		for (StatusEnum value : StatusEnum.values()) {
-			if (value.equals(status)) {
+			if (value.action.equals(status)) {
 				return value ;
 			}
 		}

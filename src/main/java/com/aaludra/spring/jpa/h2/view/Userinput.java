@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name="userinput")
 public class Userinput {
 	private int id;
 	private List<Userslist> userslist;
@@ -16,7 +16,6 @@ public class Userinput {
 	public Userinput(int id, List<Userslist> userslist) {
 		super();
 		this.id = id;
-		;
 		this.userslist = userslist;
 	}
 
