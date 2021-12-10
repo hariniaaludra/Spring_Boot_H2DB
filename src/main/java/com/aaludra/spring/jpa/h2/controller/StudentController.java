@@ -69,7 +69,7 @@ public class StudentController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@PostMapping("/user/process/xml")
+	@PostMapping("/students/process/xml")
 	public ResponseEntity<Studentinput> testXmlToObject() {
 		try {
 			studentHandler.testXmlToObject();

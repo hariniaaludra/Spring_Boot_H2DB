@@ -71,8 +71,8 @@ public class Student {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(long id2) {
+		this.id = id2;
 	}
 
 	public String getStudentname() {
