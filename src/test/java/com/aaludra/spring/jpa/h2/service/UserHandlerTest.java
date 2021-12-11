@@ -19,7 +19,7 @@ class UserHandlerTest {
 		userhandler.getAllUser();
 		List<User> list = new ArrayList<>();
 		list.get(1).setUsername("sam");
-		list.get(0).setDisplayname("sam");
+	/*	list.get(0).setDisplayname("sam");
 		list.get(2).setPassword("abcd");
 		list.get(3).setDob(DateUtil.convertStringToDate("2021-09-12"));
 		list.get(4).setPhoneno((long) 1234567892);
@@ -27,7 +27,10 @@ class UserHandlerTest {
 		list.get(6).setCreatedby("aaa");
 		list.get(7).setCreateddate(DateUtil.getCurrentTimeStamp());
 		list.get(8).setUpdatedby("bbb");
-		list.get(9).setUpdateddate(DateUtil.convertStringToTimestamp("2021-09-12"));
+		list.get(9).setUpdateddate(DateUtil.convertStringToTimestamp("2021-09-12")); */
+		List<User> list1 = userhandler.getAllUser();
+		assertEquals("sam",list1.get(1).getUsername());
+		
 	
 	}
 }

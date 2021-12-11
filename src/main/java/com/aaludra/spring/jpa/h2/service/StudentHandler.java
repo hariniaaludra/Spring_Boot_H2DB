@@ -27,18 +27,15 @@ public class StudentHandler {
 
 	public Optional<Student> getStudentById(long id) {
 
-
 		return studentRepository.findById(id);
-
 
 	}
 
 	public Student createstudent(Student student) {
-	
-		return studentRepository.save(new Student(0, student.getStudentname(), student.getRollnumber(), student.getCourse(),
-						student.getDegree(), student.getDob(), student.getStatus(), student.getCreatedby(),
-						DateUtil.getCurrentTimeStamp(), student.getUpdatedby(), student.getCreateddate()));
-		
+
+		return studentRepository.save(new Student(0, student.getStudentname(), student.getRollnumber(),
+				student.getCourse(), student.getDegree(), student.getDob(), student.getStatus(), student.getCreatedby(),
+				DateUtil.getCurrentTimeStamp(), student.getUpdatedby(), student.getCreateddate()));
 
 	}
 
