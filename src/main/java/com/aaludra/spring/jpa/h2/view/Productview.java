@@ -134,7 +134,7 @@ public class Productview {
 		this.updateddate = updatedate;
 	}
 	@Override
-	public String toString() {
+	public  String toString() {
 		return "Product [ProductName=" + productname + ", ProductCode=" + productcode + ", price=" + price + ",expdate="
 				+ expdate + ", mfgdate=" + mfgdate + ",Status=" + status + ",Createdby=" + createdby + ", createddate="
 				+ createddate + ",updatedby=" + updatedby + ", Updateddate" + updateddate + "]";

@@ -2,6 +2,7 @@ package com.aaludra.spring.jpa.h2.controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,11 @@ import com.aaludra.spring.jpa.h2.service.ProductHandler;
 import com.aaludra.spring.jpa.h2.util.Dateconvert;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Productvalidation;
+import com.aaludra.spring.jpa.h2.view.Productinput;
 import com.aaludra.spring.jpa.h2.view.Productsxml;
 import com.aaludra.spring.jpa.h2.view.Productview;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 @RestController
 @RequestMapping("/api")
@@ -87,9 +91,10 @@ public class ProductController {
 
 			obj.setUpdatedate(productobj.getUpdatedate().toString());
 
-			//obj.setMfgdate(Dateconvert.convertDateToString(productobj.getMfgdate()));
+			obj.setMfgdate(Dateconvert.convertStringToDate(productobj.getMfgdate()));
 
-			//obj.setExpdate(Dateconvert.convertDateToString(productobj.getExpdate()));
+			obj.setExpdate(Dateconvert.convertStringToDate(productobj.getExpdate()));
+
 
 			return new ResponseEntity<>(obj, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
@@ -142,12 +147,24 @@ public class ProductController {
 
 	}
 
-	@PostMapping("/products/process")
-	public ResponseEntity<Productsxml> createprocess() {
+	@PostMapping("/products/process/xml")
+	public ResponseEntity<Productinput> testXmlToObject(){
 		try {
 			 handler.testXmlToObject();
 		} catch (FileNotFoundException | JAXBException e) {
 			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return null;
+	}
+	
+	@PostMapping("/products/process/json")
+	public ResponseEntity<Productview> testJsonToObject() throws JsonParseException, JsonMappingException, IOException{
+		try {
+			 handler.testJsonToObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
 	}

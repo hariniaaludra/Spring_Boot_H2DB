@@ -1,8 +1,11 @@
 package com.aaludra.spring.jpa.h2.controller;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.xml.bind.JAXBException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +29,7 @@ import com.aaludra.spring.jpa.h2.util.CustDateUtils;
 import com.aaludra.spring.jpa.h2.validation.CustomerValidation;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.view.CustomerView;
+import com.aaludra.spring.jpa.h2.view.Customerinput;
 
 
 @RestController
@@ -38,7 +42,7 @@ public class CustomerController {
 	@GetMapping("/customer")
 	public ResponseEntity<List<Customer>> getAllcustomers(@RequestParam(required = false) String createdBy) {
 		try {
-			List<Customer> customers = handler.getAllcustomers(createdBy);
+			List<Customer> customers = handler.getAllcustomers();
 
 			if (customers.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -60,6 +64,16 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@PostMapping("/customers/process")
+	public ResponseEntity<CustomerView> testJsonToObject(){
+		try {
+			handler.testJsonToObject();
+			return new ResponseEntity<>(null,HttpStatus.CREATED);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	@PostMapping("/customer")
 	public ResponseEntity<?> createcustomer(@RequestBody Customer customer) {
@@ -69,20 +83,6 @@ public class CustomerController {
 			customerval.validate(customer);
 			
 			Customer customerobj = handler.createcustomer(customer);
-			CustomerView viewobj=new CustomerView();
-			
-			viewobj.setCustname(customerobj.getCustname());
-			viewobj.setCustId(customerobj.getCustId());
-			viewobj.setCity(customerobj.getCity());
-			viewobj.setDob(CustDateUtils.convertstringtodate(customerobj.getDob()));
-			viewobj.setGstin(customerobj.getGstin());
-			viewobj.setStatus(customerobj.getStatus());
-			viewobj.setCreatedBy(customerobj.getCreatedBy());
-			viewobj.setCreatedDate(customerobj.getCreatedDate().toString());
-			viewobj.setUpdatedBy(customerobj.getUpdatedBy());
-			viewobj.setUpdatedDate(customerobj.getUpdatedDate().toString());
-			viewobj.setGender(customerobj.getGender());
-			
 			
 			
 
@@ -139,6 +139,17 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
+	}
+	@PostMapping("/customers/process/xml")
+	public ResponseEntity<Customerinput> testXmlToObject(){
+		try {
+			handler.testXmlToObject();
+		}catch(FileNotFoundException | JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return null;
+		
 	}
 
 	@GetMapping("/customer/cust_name")

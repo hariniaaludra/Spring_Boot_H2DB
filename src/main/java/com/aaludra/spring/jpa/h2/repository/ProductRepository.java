@@ -8,6 +8,7 @@ public interface ProductRepository extends JpaRepository <Product, Long >{
 
  //List<Product> findBycreatedbyContaining(String createdby);
 
+
 	List<Product> findByproductnameContaining(String productname);
 
 	//List<Product> findBycreatedby(String createdby);

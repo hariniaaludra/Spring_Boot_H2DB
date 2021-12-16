@@ -1,93 +1,115 @@
 package com.aaludra.spring.jpa.h2.view;
 
-public class Userslist {
-	private String username;
-	private String displayname;
-	private String password;
+public class Studentxml {
+	private String studentname;
+	private String rollnumber;
+	private String course;
+	private String degree;
 	private String dob;
-	private String phoneno;
 	private String status;
 	private String createdby;
 	private String createddate;
 	private String updatedby;
 	private String updateddate;
-	public Userslist() {
+
+	public Studentxml() {
 		super();
-		
+
 	}
-	public Userslist(String username, String displayname, String password, String dob, String phoneno, String status,
+
+	public Studentxml(String studentname, String rollnumber, String course, String degree, String dob, String status,
 			String createdby, String createddate, String updatedby, String updateddate) {
 		super();
-		this.username = username;
-		this.displayname = displayname;
-		this.password = password;
+		this.studentname = studentname;
+		this.rollnumber = rollnumber;
+		this.course = course;
+		this.degree = degree;
 		this.dob = dob;
-		this.phoneno = phoneno;
 		this.status = status;
 		this.createdby = createdby;
 		this.createddate = createddate;
 		this.updatedby = updatedby;
 		this.updateddate = updateddate;
 	}
-	public String getUsername() {
-		return username;
+
+	public String getStudentname() {
+		return studentname;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+
+	public void setStudentname(String studentname) {
+		this.studentname = studentname;
 	}
-	public String getDisplayname() {
-		return displayname;
+
+	public String getRollnumber() {
+		return rollnumber;
 	}
-	public void setDisplayname(String displayname) {
-		this.displayname = displayname;
+
+	public void setRollnumber(String rollnumber) {
+		this.rollnumber = rollnumber;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getCourse() {
+		return course;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setCourse(String course) {
+		this.course = course;
 	}
+
+	public String getDegree() {
+		return degree;
+	}
+
+	public void setDegree(String degree) {
+		this.degree = degree;
+	}
+
 	public String getDob() {
 		return dob;
 	}
+
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-	public String getPhoneno() {
-		return phoneno;
-	}
-	public void setPhoneno(String phoneno) {
-		this.phoneno = phoneno;
-	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getCreatedby() {
 		return createdby;
 	}
+
 	public void setCreatedby(String createdby) {
 		this.createdby = createdby;
 	}
+
 	public String getCreateddate() {
 		return createddate;
 	}
+
 	public void setCreateddate(String createddate) {
 		this.createddate = createddate;
 	}
+
 	public String getUpdatedby() {
 		return updatedby;
 	}
+
 	public void setUpdatedby(String updatedby) {
 		this.updatedby = updatedby;
 	}
+
 	public String getUpdateddate() {
 		return updateddate;
 	}
+
 	public void setUpdateddate(String updateddate) {
 		this.updateddate = updateddate;
 	}
-	
+
 }

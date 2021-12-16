@@ -1,8 +1,43 @@
-
+{
+"userslist" : [
 	{
 		"username": "appu",
 		"displayname": "appu",
 		"password": "Red",
 		"phoneno": "1234567895",
 		"dob": "1999-02-22"
+	}
+	,
+	{
+		"username": "abi",
+		"displayname": "abi",
+		"password": "blue",
+		"phoneno": "1234567895",
+		"dob": "2000-03-28"
+	}
+	,
+	{
+		"username": "vichu",
+		"displayname": "vichu",
+		"password": "pink",
+		"phoneno": "1234567895",
+		"dob": "1997-03-15"
+	}
+	,
+	{
+		"username": "achu",
+		"displayname": "achu",
+		"password": "grey",
+		"phoneno": "1234567895",
+		"dob": "1992-09-28"
+	}
+	,
+	{
+		"username": "sam",
+		"displayname": "sam",
+		"password": "black",
+		"phoneno": "1234567895",
+		"dob": "1996-07-10"
+	}
+	]
 	}

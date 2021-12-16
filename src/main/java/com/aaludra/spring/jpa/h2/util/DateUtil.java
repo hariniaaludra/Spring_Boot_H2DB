@@ -18,12 +18,14 @@ public class DateUtil {
 	public static Date convertStringToDate(String inputString) {
 
 		try {
+			System.out.println(inputString);
 			DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			// you can change format of date
 			java.util.Date date = formatter.parse(inputString);
 			
 			return new Date(date.getTime());
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 
 		}

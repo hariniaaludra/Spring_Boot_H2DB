@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<products id="1">
+<products>
+
+<productlist>
 	<productname> rice </productname>
 	<productcode> id101</productcode>
 	<price> 100</price>
-	<expdate>"2021-10-11"</expdate>
-	<mfgdate>"2020-01-23"</mfgdate>
+	<expdate>2021-10-11</expdate>
+	<mfgdate>2020-01-23</mfgdate>
 	<status> fiber</status>
-	<updateddate>"2020-11-29"</updateddate>
-	<createddate>"2020-11-29"</createddate>
+	<updateddate>2020-11-29</updateddate>
+	<createddate>2020-11-29</createddate>
 	<updatedby> jack </updatedby>
 	<createdby> jack</createdby>
+	</productlist>
+	
+	<productlist>
+	<productname> cake </productname>
+	<productcode> id102</productcode>
+	<price> 200</price>
+	<expdate>2022-10-11</expdate>
+	<mfgdate>2020-01-23</mfgdate>
+	<status> sweet</status>
+	<updateddate>2020-11-29</updateddate>
+	<createddate>2020-11-29</createddate>
+	<updatedby> glad </updatedby>
+	<createdby> glad</createdby>
+	</productlist>
+	
+	<productlist>
+	<productname> wheat </productname>
+	<productcode> id102</productcode>
+	<price> 101</price>
+	<expdate>2021-10-11</expdate>
+	<mfgdate>2020-01-23</mfgdate>
+	<status> fiber</status>
+	<updateddate>2020-11-29</updateddate>
+	<createddate>2020-11-29</createddate>
+	<updatedby> son </updatedby>
+	<createdby> son</createdby>
+	</productlist>
+	
 </products>

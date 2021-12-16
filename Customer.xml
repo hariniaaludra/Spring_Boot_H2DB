@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+
+<customerlist>
+	<custname>vignesh</custname>
+	<custId>123456789012345</custId>
+	<city>chennai</city>
+	<dob>1999-12-12</dob>
+	<gstin>123456789012345</gstin>
+	<status>paid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+<customerlist>
+	<custname>ganesh</custname>
+	<custId>123456789012345</custId>
+	<city>coimbatore</city>
+	<dob>1999-12-12</dob>
+	<gstin>123456789012345</gstin>
+	<status>notpaid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+<customerlist>
+	<custname>Balu</custname>
+	<custId>123456789012345</custId>
+	<city>coimbatore</city>
+	<dob>1999-12-23</dob>
+	<gstin>123456789012345</gstin>
+	<status>notpaid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+<customerlist>
+	<custname>aravind</custname>
+	<custId>123456789012345</custId>
+	<city>coimbatore</city>
+	<dob>1999-11-19</dob>
+	<gstin>123456789012345</gstin>
+	<status>notpaid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+<customerlist>
+	<custname>magesh</custname>
+	<custId>123456789012345</custId>
+	<city>coimbatore</city>
+	<dob>1999-11-30</dob>
+	<gstin>123456789012345</gstin>
+	<status>notpaid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+<customerlist>
+	<custname>prakash</custname>
+	<custId>123456789012345</custId>
+	<city>chennai</city>
+	<dob>1999-12-12</dob>
+	<gstin>123456789012345</gstin>
+	<status>notpaid</status>
+	<createdBy>raj</createdBy>
+	<createdDate>2021-12-10</createdDate>
+	<updatedBy>raj</updatedBy>
+	<updatedDate>2021-12-10</updatedDate>
+	<gender>male</gender>
+</customerlist>
+
+</customers>

@@ -2,6 +2,8 @@ package com.aaludra.spring.jpa.h2.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +22,12 @@ import com.aaludra.spring.jpa.h2.model.Product;
 import com.aaludra.spring.jpa.h2.repository.ProductRepository;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.util.Dateconvert;
+import com.aaludra.spring.jpa.h2.view.Productinput;
 import com.aaludra.spring.jpa.h2.view.Productsxml;
 import com.aaludra.spring.jpa.h2.view.Productview;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
 public class ProductHandler {
@@ -73,15 +79,63 @@ public class ProductHandler {
 		productRepository.save(productobj);
 		return productobj;
 	}
+	private Product buildProduct(Productview Productview) {
+        Product tblpd = new Product();
 
-	public Product testXmlToObject() throws JAXBException, FileNotFoundException {
-		File file = new File("C:\\files\\New folder\\Spring_Boot_H2DB\\src\\main\\java\\product.xml");  
-        JAXBContext jaxbContext = JAXBContext.newInstance(Productsxml.class);  
+tblpd.setProductname(Productview.getProductname());
+tblpd.setProductcode((Productview.getProductcode()));
+tblpd.setPrice(Double.parseDouble(Productview.getPrice()));
+tblpd.setExpdate(DateUtil.convertStringToDate(Productview.getExpdate()));
+tblpd.setMfgdate(DateUtil.convertStringToDate(Productview.getMfgdate()));
+tblpd.setStatus(Productview.getStatus());
+tblpd.setCreatedby(Productview.getCreatedby());
+tblpd.setCreateddate(DateUtil.convertStringToTimestamp(Productview.getCreateddate()));
+tblpd.setUpdatedby(Productview.getUpdatedby());
+tblpd.setUpdatedate(DateUtil.convertStringToTimestamp(Productview.getUpdatedate()));
+
+return tblpd;
+}
+
+	public void testXmlToObject() throws JAXBException, FileNotFoundException {
+		
+		File file = new File("C:\\files\\New folder (2)\\Spring_Boot_H2DB\\src\\main\\java\\product.xml");  
+        JAXBContext jaxbContext = JAXBContext.newInstance(Productinput.class); 
+        
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();  
-        Productsxml que= (Productsxml) jaxbUnmarshaller.unmarshal(file);  
-        System.out.println(que.getId()+" "+que.getProductname()+" "+que.getProductcode()+" "+que.getPrice()+" "+que.getExpdate()+" "+que.getMfgdate()+" "+que.getStatus()+" "+que.getCreatedby()+" "+que.getCreateddate()+" "+que.getUpdatedby()+" "+que.getUpdateddate());  
-        return productRepository
-				.save(new Product(que.getProductname(), que.getProductcode(),Double.parseDouble(que.getPrice()),DateUtil.convertStringToDate(que.getExpdate()),DateUtil.convertStringToDate(que.getMfgdate()),que.getStatus(),que.getCreatedby(),DateUtil.convertStringToTimestamp(que.getCreateddate()),
-					 que.getUpdatedby(),DateUtil.convertStringToTimestamp (que.getUpdateddate())));   		
+        Productinput que= (Productinput) jaxbUnmarshaller.unmarshal(file); 
+        
+        List<Productsxml> list=que.getProductlist();
+       List<Productsxml> ulist= new ArrayList<>();
+        
+        
+        
+        for(Productsxml pr:list ) {
+        System.out.println(pr.getId()+" "+pr.getProductname()+" "+pr.getProductcode()+" "+pr.getPrice()+" "+pr.getExpdate()+" "+pr.getMfgdate()+" "+pr.getStatus()+" "+pr.getCreatedby()+" "+pr.getCreateddate()+" "+pr.getUpdatedby()+" "+pr.getUpdateddate());  
+         productRepository
+				.save(new Product(pr.getProductname(), pr.getProductcode(),Double.parseDouble(pr.getPrice()),DateUtil.convertStringToDate(pr.getExpdate()),DateUtil.convertStringToDate(pr.getMfgdate()),pr.getStatus(),pr.getCreatedby(),DateUtil.convertStringToTimestamp(pr.getCreateddate()),
+					 pr.getUpdatedby(),DateUtil.convertStringToTimestamp (pr.getUpdateddate()))); 
+         ulist.add(pr);
 	}
 }
+	public void testJsonToObject() throws JsonParseException, JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		Productview productview=new Productview() ;
+		try {
+			productview= mapper.readValue(new File("product.json"),Productview.class);
+			Product product=this.buildProduct(productview);
+			product.setCreatedby("suriya");
+			product.setUpdatedby("suriya");
+			product.setCreateddate(DateUtil.getCurrentTimeStamp());
+			product.setUpdatedate(DateUtil.getCurrentTimeStamp());
+	            System.out.println(product);
+	            productRepository.save(product);
+	        }catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	        System.out.println(productview);
+	        
+		}
+		
+		
+	}
+	

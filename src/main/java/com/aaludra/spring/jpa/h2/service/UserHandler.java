@@ -12,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,11 @@ import com.aaludra.spring.jpa.h2.enum1.StatusEnum;
 import com.aaludra.spring.jpa.h2.model.User;
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
 import com.aaludra.spring.jpa.h2.util.DateUtil;
+import com.aaludra.spring.jpa.h2.view.UserJsoninput;
 import com.aaludra.spring.jpa.h2.view.UserView;
 import com.aaludra.spring.jpa.h2.view.Userinput;
 import com.aaludra.spring.jpa.h2.view.Userslist;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -34,10 +37,11 @@ public class UserHandler {
 		List<User> list = new ArrayList<>();
 		userRepository.findAll().forEach(list::add);
 		return list;
+		
 	}
 
-	public Optional<User> getUserById(long id) {
-		return userRepository.findById((int) id);
+	public Optional<User> getUserById(int id) {
+		return userRepository.findById(id);
 	}
 
 	public User createUser(User user) {
@@ -88,6 +92,30 @@ public class UserHandler {
 
 	}
 
+	public void testjsonToObject() throws JsonParseException,JsonMappingException,IOException {
+		ObjectMapper objectmapper = new ObjectMapper();
+		
+		UserJsoninput userview = objectmapper.readValue(new File("E:\\Git\\new\\Spring_Boot_H2DB\\user.json"),UserJsoninput.class);
+		List<Userslist> ulist = new ArrayList<>();
+		List<Userslist> jsonlist = userview.getUserslist();
+		
+		System.out.println("ulist" + jsonlist.size());
+		
+
+		for (Userslist usr : jsonlist) {
+			System.out.println(usr.getUsername() + " " + usr.getDisplayname() + " " + usr.getPassword() + " "
+					+ usr.getDob() + " " + usr.getPhoneno() + " " + usr.getStatus() + " " + usr.getCreatedby() + " "
+					+ usr.getCreateddate() + " " + usr.getUpdatedby() + " " + usr.getUpdateddate());
+
+			ulist.add(usr);
+
+			userRepository.save(new User(0, usr.getUsername(), usr.getDisplayname(), usr.getPassword(),DateUtil.convertStringToDate(usr.getDob()),
+					Long.valueOf(usr.getPhoneno()), StatusEnum.Active.name(), "Admin", DateUtil.getCurrentTimeStamp(),
+					"Admin", DateUtil.getCurrentTimeStamp()));
+		}
+
+	}
+
 	private User buildUser(UserView userview) {
 		User tbluser = new User();
 		tbluser.setUsername(userview.getUsername());
@@ -104,7 +132,7 @@ public class UserHandler {
 		return tbluser;
 	}
 
-	public void testjsonToObject() {
+	/*public void testjsonToObject() {
 		ObjectMapper objectmapper = new ObjectMapper();
 
 		UserView userview = null;
@@ -124,5 +152,19 @@ public class UserHandler {
 		}
 		System.out.println(userview);
 
-	}
+	}*/
+	
+	
+	
+	/* public Optional<User> getUserById(int id) {
+		Optional<User> findById = userRepository.findById(id);
+		if(findById==null) {
+			System.out.println("Result null");
+		}
+		else {
+		System.out.println("result: "+findById);
+		}
+		return findById;
+		return userRepository.findById(id);
+	}*/
 }

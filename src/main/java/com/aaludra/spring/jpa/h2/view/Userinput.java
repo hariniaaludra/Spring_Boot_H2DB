@@ -11,6 +11,7 @@ public class Userinput {
 	
 	public Userinput() {
 		
+		
 	}
 
 	public Userinput(int id, List<Userslist> userslist) {
