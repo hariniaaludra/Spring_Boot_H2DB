@@ -1,6 +1,8 @@
 package com.aaludra.spring.jpa.h2.controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +28,14 @@ import com.aaludra.spring.jpa.h2.model.Customer;
 
 import com.aaludra.spring.jpa.h2.service.CustomerHandler;
 import com.aaludra.spring.jpa.h2.util.CustDateUtils;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
 import com.aaludra.spring.jpa.h2.validation.CustomerValidation;
 import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
-import com.aaludra.spring.jpa.h2.view.CustomerView;
+import com.aaludra.spring.jpa.h2.view.CustomerViewInput;
+import com.aaludra.spring.jpa.h2.view.CustomerViewOutput;
 import com.aaludra.spring.jpa.h2.view.Customerinput;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 @RestController
@@ -40,9 +46,9 @@ public class CustomerController {
 	CustomerHandler handler;
 
 	@GetMapping("/customer")
-	public ResponseEntity<List<Customer>> getAllcustomers(@RequestParam(required = false) String createdBy) {
+	public ResponseEntity<List<CustomerViewOutput>> getAllcustomers(@RequestParam(required = false) String createdBy) {
 		try {
-			List<Customer> customers = handler.getAllcustomers();
+			List<CustomerViewOutput> customers = handler.getAllcustomers();
 
 			if (customers.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -55,8 +61,8 @@ public class CustomerController {
 	}
 
 	@GetMapping("/customer/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
-		Optional<Customer> customerData = handler.getCustomerById(id);
+	public ResponseEntity<CustomerViewOutput> getCustomerById(@PathVariable("id") long id) {
+		Optional<CustomerViewOutput> customerData = handler.getCustomerById(id);
 
 		if (customerData.isPresent()) {
 			return new ResponseEntity<>(customerData.get(), HttpStatus.OK);
@@ -64,8 +70,8 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	@PostMapping("/customers/process")
-	public ResponseEntity<CustomerView> testJsonToObject(){
+	@PostMapping("/customers/process/json")
+	public ResponseEntity<CustomerViewOutput> testJsonToObject()throws JsonParseException,JsonMappingException,IOException{
 		try {
 			handler.testJsonToObject();
 			return new ResponseEntity<>(null,HttpStatus.CREATED);
@@ -74,15 +80,26 @@ public class CustomerController {
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	@GetMapping("/customer/reverse/json")
+	public ResponseEntity<List<CustomerViewOutput>> objectToJson()throws JsonParseException,JsonMappingException,IOException {
+		try {
+			handler.dbDataToJsonfile();
+
+			return new ResponseEntity<>(null,HttpStatus.CREATED);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	@PostMapping("/customer")
-	public ResponseEntity<?> createcustomer(@RequestBody Customer customer) {
+	public ResponseEntity<?> createcustomer(@RequestBody CustomerViewInput customerview) {
 		
 		try {
 			CustomerValidation customerval=new CustomerValidation();
-			customerval.validate(customer);
+			customerval.validate(customerview);
 			
-			Customer customerobj = handler.createcustomer(customer);
+			CustomerViewOutput customerobj = handler.createcustomer(customerview);
 			
 			
 
@@ -97,27 +114,12 @@ public class CustomerController {
 	}
 
 	@PutMapping("/customer/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") int id, @RequestBody CustomerView customerview) {
-		Optional<Customer> customerData = handler.getCustomerById(id);
+	public ResponseEntity<CustomerViewOutput> updateCustomer(@PathVariable("id") long id, @RequestBody CustomerViewInput customerview) {
+		//Optional<Customer> customerData = handler.getCustomerById(id);
 
-		if (customerData.isPresent()) {
-			Customer customerobj = customerData.get();
-			customerobj.setCustname(customerview.getCustname());
-			customerobj.setCustId( customerview.getCustId());
-			customerobj.setCity(customerview.getCity());
-			customerobj.setDob(CustDateUtils.convertStringToDate(customerview.getDob()));
-			customerobj.setGstin(customerview.getGstin());
-			customerobj.setStatus(customerview.getStatus());
-			customerobj.setCreatedBy(customerview.getCreatedBy());
-			customerobj.setCreatedDate(CustDateUtils.convertStringToTimestamp(customerview.getCreatedDate()));
-			customerobj.setUpdatedBy(customerview.getUpdatedBy());
-			customerobj.setUpdatedDate(CustDateUtils.convertStringToTimestamp(customerview.getUpdatedDate()));
-			customerobj.setGender(customerview.getGender());
-			
-			return new ResponseEntity<>(handler.updateCustomer(customerobj), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+
+			return new ResponseEntity<>(handler.updateCustomer(id,customerview), HttpStatus.OK);
+		
 	}
 
 	@DeleteMapping("/customer/{id}")
@@ -141,7 +143,7 @@ public class CustomerController {
 
 	}
 	@PostMapping("/customers/process/xml")
-	public ResponseEntity<Customerinput> testXmlToObject(){
+	public ResponseEntity<CustomerViewOutput> testXmlToObject(){
 		try {
 			handler.testXmlToObject();
 		}catch(FileNotFoundException | JAXBException e) {
@@ -151,12 +153,23 @@ public class CustomerController {
 		return null;
 		
 	}
+	@GetMapping("/customer/reverse/xml")
+	public ResponseEntity<List<CustomerViewOutput>> objectToXml()throws SQLException {
+		try {
+			handler.dBDataToxml();
 
+			return new ResponseEntity<>(null,HttpStatus.CREATED);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@GetMapping("/customer/cust_name")
 
-	public ResponseEntity<List<Customer>> findBycustname() {
+	public ResponseEntity<List<CustomerViewOutput>> findBycustname() {
 		try {
-			List<Customer> customer = handler.findBycustname();
+			List<CustomerViewOutput> customer = handler.findBycustname();
 
 			if (customer.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);

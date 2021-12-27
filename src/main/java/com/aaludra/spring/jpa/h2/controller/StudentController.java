@@ -1,8 +1,6 @@
 package com.aaludra.spring.jpa.h2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Student;
 import com.aaludra.spring.jpa.h2.service.StudentHandler;
 import com.aaludra.spring.jpa.h2.view.Studentinput;
+import com.aaludra.spring.jpa.h2.view.Studentoutput;
 import com.aaludra.spring.jpa.h2.view.Studentview;
 import com.aaludra.spring.jpa.h2.view.UserXmlToObj;
 
@@ -39,29 +37,25 @@ import com.aaludra.spring.jpa.h2.validation.StudentValidation;
 
 public class StudentController {
 
-	
 	@Autowired
 	StudentHandler studentHandler;
-
 	@GetMapping("/students")
-	public ResponseEntity<List<Student>> getAllStudents(@RequestParam(required = false) String course) {
-
+	public ResponseEntity<List<Studentoutput>> getAllStudents(@RequestParam(required = false) String course) {
 		try {
-			List<Student> students = studentHandler.getAllstudents(course);
+			List<Studentoutput> students = studentHandler.getAllstudents();
 
-			if (students.isEmpty()) {
+	     	if (students.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-
+    
 			return new ResponseEntity<>(students, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 	@GetMapping("/students/{id}")
-	public ResponseEntity<Student> getStudentById(@PathVariable("id") long id) {
-		Optional<Student> studentData = studentHandler.getStudentById(id);
+	public ResponseEntity<Studentoutput> getStudentById(@PathVariable("id") long id) {
+		Optional<Studentoutput> studentData = studentHandler.getStudentById(id);
 		if (studentData.isPresent()) {
 			
 			return new ResponseEntity<>(studentData.get(), HttpStatus.OK);
@@ -69,6 +63,18 @@ public class StudentController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	@GetMapping("/students/reverseprocess/xml")
+    public ResponseEntity<Studentinput> testObjectToXml(){
+    	try {
+    		studentHandler.testObjectToXml();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+    	}
+		return null;
+    	
+    }
+	
 	@PostMapping("/students/process/xml")
 	public ResponseEntity<Studentinput> testXmlToObject() {
 		try {
@@ -78,10 +84,21 @@ public class StudentController {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+	
 		return null ;
 	}
-	@PostMapping("/students/process/json")
+	@GetMapping("/students/reverseprocess/json")
+	public ResponseEntity<Studentview> testObjectToJson(){
+		try {
+			studentHandler.testObjectToJson();
+			return new ResponseEntity<>(null,HttpStatus.CREATED);
+			}catch(Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+	}
+    
+	@PostMapping("/students/process/json")     
 		public ResponseEntity<Studentview> testJsonToObject()  {
 			try {
 				studentHandler.testJsonToObject();
@@ -91,15 +108,15 @@ public class StudentController {
 				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 	}
-	
+  
 	@PostMapping("/students")
 
-	public ResponseEntity<?> createStudent(@RequestBody Student student) {
+	public ResponseEntity<?> createStudent(@RequestBody Studentview student) {
 		try {
-			
+			ResponseEntity<List<Studentoutput>> studentout=this.getAllStudents(null);
 			StudentValidation stu = new StudentValidation();
 			stu.validate(student);
-			Student students = studentHandler.createstudent(student);
+            Studentoutput students = studentHandler.createstudent(student);
 			return new ResponseEntity<>(students, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
 			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
@@ -111,12 +128,14 @@ public class StudentController {
 	}
 
 	@PutMapping("/students/{id}")
-	public ResponseEntity<Student> updateStudent(@PathVariable("id") long id, @RequestBody Studentview studentview) {
-		Optional<Student> studentData = studentHandler.getStudentById(id);
+	public ResponseEntity<Studentoutput> updateStudent(@PathVariable("id") long id, @RequestBody Studentview studentview) {
+		Optional<Studentoutput> studentData = studentHandler.getStudentById(id);
 			return new ResponseEntity<>(studentHandler.updateStudent(id, studentview), HttpStatus.OK);
 		}
+	//	} else {
+			//return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		//}
 	
-		
 	
 
 	@DeleteMapping("/students/{id}")

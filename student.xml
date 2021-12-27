@@ -2,94 +2,94 @@
 
 <student>
 
-      <studentlist>
-      <studentname>Harini</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>Hari</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>gomathi</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>galdson</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>suriya</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>aswathy</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>dharani</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>Harini</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>krish</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>hasini</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      
-       <studentlist>
-      <studentname>charu</studentname>
-      <rollnumber>13</rollnumber>
-      <course>CS</course>
-      <degree>B.E</degree>
-      <dob>1999-08-04</dob>
-      </studentlist>
-      </student>
+	<studentlist>
+		<studentname>Harini</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>Hari</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>gomathi</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>galdson</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>suriya</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>aswathy</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>dharani</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>Harini</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>krish</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>hasini</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+
+	<studentlist>
+		<studentname>charu</studentname>
+		<rollnumber>13</rollnumber>
+		<course>CS</course>
+		<degree>B.E</degree>
+		<dob>1999-08-04</dob>
+	</studentlist>
+</student>
       
 
 

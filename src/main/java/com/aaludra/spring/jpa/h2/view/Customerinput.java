@@ -5,6 +5,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "customers")
+
 public class Customerinput {
 	private List<CustomerXml> customerlist;
 	

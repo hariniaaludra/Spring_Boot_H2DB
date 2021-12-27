@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customers>
+    <customer>
+        <city>chennai</city>
+        <createdBy>Admin</createdBy>
+        <createdDate>1999-12-12 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>glad</custname>
+        <dob>1999-12-06</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>1</id>
+        <status>paid</status>
+        <updatedBy>Admin</updatedBy>
+        <updatedDate>2000-12-12 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>chennai</city>
+        <createdBy>Admin</createdBy>
+        <createdDate>1999-12-12 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>glad</custname>
+        <dob>1999-12-06</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>2</id>
+        <status>paid</status>
+        <updatedBy>Admin</updatedBy>
+        <updatedDate>2000-12-12 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>chennai</city>
+        <createdBy>Admin</createdBy>
+        <createdDate>1999-12-12 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>glad</custname>
+        <dob>1999-12-06</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>3</id>
+        <status>paid</status>
+        <updatedBy>Admin</updatedBy>
+        <updatedDate>2000-12-12 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>chennai</city>
+        <createdBy>Admin</createdBy>
+        <createdDate>1999-12-12 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>glad</custname>
+        <dob>1999-12-06</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>4</id>
+        <status>paid</status>
+        <updatedBy>Admin</updatedBy>
+        <updatedDate>2000-12-12 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>chennai</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>vignesh</custname>
+        <dob>1999-12-12</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>5</id>
+        <status>paid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>coimbatore</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>ganesh</custname>
+        <dob>1999-12-12</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>6</id>
+        <status>notpaid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>coimbatore</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>Balu</custname>
+        <dob>1999-12-23</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>7</id>
+        <status>notpaid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>coimbatore</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>aravind</custname>
+        <dob>1999-11-19</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>8</id>
+        <status>notpaid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>coimbatore</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>magesh</custname>
+        <dob>1999-11-30</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>9</id>
+        <status>notpaid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+    <customer>
+        <city>chennai</city>
+        <createdBy>raj</createdBy>
+        <createdDate>2021-12-10 00:00:00.0</createdDate>
+        <custId>123456789012345</custId>
+        <custname>prakash</custname>
+        <dob>1999-12-12</dob>
+        <gender>male</gender>
+        <gstin>123456789012345</gstin>
+        <id>10</id>
+        <status>notpaid</status>
+        <updatedBy>raj</updatedBy>
+        <updatedDate>2021-12-10 00:00:00.0</updatedDate>
+    </customer>
+</customers>

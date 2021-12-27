@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.sql.Date;
 
 @Entity
-@Table(name = "tbl_student")
+@Table(name = "TBL_STUDENT")
 
 public class Student {
 	@Id
@@ -51,10 +51,10 @@ public class Student {
 
 	}
 
-	public Student(long id, String studentname, int rollnumber, String course, String degree, Date dob, String status,
+	public Student( String studentname, int rollnumber, String course, String degree, Date dob, String status,
 			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
 		super();
-		this.id = id;
+		
 		this.studentname = studentname;
 		this.rollnumber = rollnumber;
 		this.course = course;
@@ -71,10 +71,10 @@ public class Student {
 		return id;
 	}
 
-	public void setId(long id2) {
-		this.id = id2;
+	public void setId(long id) {
+		this.id = id;
 	}
-
+	
 	public String getStudentname() {
 		return studentname;
 	}
@@ -161,6 +161,7 @@ public class Student {
 				+ course + ", degree=" + degree + ", dob=" + dob + ", status=" + status + ", createdby=" + createdby
 				+ ", createddate=" + createddate + ", updatedby=" + updatedby + ", updateddate=" + updateddate + "]";
 	}
+
 }
 	
 

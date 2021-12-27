@@ -2,7 +2,13 @@ package com.aaludra.spring.jpa.h2.view;
 
 import java.util.List;
 
+
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="student")
 public class Studentinput {
+	
 	private List<Studentxml> studentlist;
 	private int id;
 	
@@ -26,5 +32,4 @@ public class Studentinput {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 }
