@@ -3,10 +3,12 @@ package com.aaludra.spring.jpa.h2.validation;
 import com.aaludra.spring.jpa.h2.enum1.CustEnum;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Customer;
+import com.aaludra.spring.jpa.h2.view.CustomerViewInput;
+import com.aaludra.spring.jpa.h2.view.CustomerViewOutput;
 
 public class CustomerValidation {
 	
-     public void validate(Customer customer) throws InvalidRequestException{
+     public void validate(CustomerViewInput customer) throws InvalidRequestException{
     	 if(customer.getCustname()==null) {
     		 throw new InvalidRequestException("Name is Mandatory");
     	 }

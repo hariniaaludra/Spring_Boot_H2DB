@@ -1,11 +1,17 @@
 package com.aaludra.spring.jpa.h2.view;
 
-public class CustomerView {
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.aaludra.spring.jpa.h2.model.Customer;
+import com.aaludra.spring.jpa.h2.util.DateUtil;
+@XmlRootElement(name = "customers")
+public class CustomerViewOutput {
+	private String id;
 	private String custname;
 	private String custId;
 	private String city;
 	private String dob;
-	private String Gstin;
+	private String gstin;
 	private String status;
 	private String createdBy;
 	private String createdDate;
@@ -13,17 +19,20 @@ public class CustomerView {
 	private String updatedDate;
 	private String gender;
 	
-    public CustomerView() {
-    	
-    }
-    public CustomerView(String custname,String custId,String city,String dob,String Gstin,String status,String createdBy,String createdDate,
+	public CustomerViewOutput() {
+		
+	}
+	
+   
+    public CustomerViewOutput(String id,String custname,String custId,String city,String dob,String Gstin,String status,String createdBy,String createdDate,
     		String updatedBy,String updatedDate,String gender)
     {
+    	    this.id = id;
     		this.custname=custname;
     		this.custId=custId;
     		this.city=city;
     		this.dob=dob;
-    		this.Gstin=Gstin;
+    		this.gstin=Gstin;
     		this.status=status;
     		this.createdBy=createdBy;
     		this.createdDate=createdDate;
@@ -32,12 +41,19 @@ public class CustomerView {
     		this.gender=gender;
     		}
     
-	public String getGender() {
-		return gender;
+    
+	
+	
+	public String getId() {
+		return id;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
+
+
 	public String getCustname() {
 		return custname;
 	}
@@ -63,10 +79,10 @@ public class CustomerView {
 		this.dob = dob;
 	}
 	public String getGstin() {
-		return Gstin;
+		return gstin;
 	}
 	public void setGstin(String gstin) {
-		Gstin = gstin;
+		this.gstin = gstin;
 	}
 	public String getStatus() {
 		return status;
@@ -99,11 +115,17 @@ public class CustomerView {
 	public void setUpdatedDate(String updatedDate) {
 		this.updatedDate = updatedDate;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	
 	@Override
 	public String toString() {
-		return "CustomerView [custname=" + custname + ", custId=" + custId + ", city=" + city + ", dob=" + dob
-				+ ", Gstin=" + Gstin + ", status=" + status + ", createdBy=" + createdBy + ", createdDate="
+		return "Customer [id="+id+",custname=" + custname + ", custId=" + custId + ", city=" + city + ", dob=" + dob
+				+ ", Gstin=" + gstin + ", status=" + status + ", createdBy=" + createdBy + ", createdDate="
 				+ createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + ", gender=" + gender
 				+ "]";
 	}

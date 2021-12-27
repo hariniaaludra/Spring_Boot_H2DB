@@ -51,14 +51,14 @@ public class Customer {
 	
 	
 
-	public Customer( String custname, String custId, String city, Date dob, String gstin, String status,
+	public Customer(long id, String custname, String custId, String city, Date dob, String gstin, String status,
 			String createdBy, Timestamp createdDate, String updatedBy, Timestamp updatedDate, String gender) {
-		
+		this.id = id;
 		this.custname = custname;
 		this.custId = custId;
 		this.city = city;
 		this.dob = dob;
-		Gstin = gstin;
+		this.Gstin = gstin;
 		this.status = status;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
