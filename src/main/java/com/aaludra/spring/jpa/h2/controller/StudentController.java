@@ -21,7 +21,7 @@ import com.aaludra.spring.jpa.h2.model.Student;
 import com.aaludra.spring.jpa.h2.service.StudentHandler;
 import com.aaludra.spring.jpa.h2.view.Studentinput;
 import com.aaludra.spring.jpa.h2.view.Studentview;
-import com.aaludra.spring.jpa.h2.view.Userinput;
+import com.aaludra.spring.jpa.h2.view.UserXmlToObj;
 
 import java.io.File;
 import java.util.List;

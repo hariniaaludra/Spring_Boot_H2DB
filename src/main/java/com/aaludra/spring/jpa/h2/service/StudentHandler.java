@@ -153,22 +153,3 @@ public class StudentHandler {
 		
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-

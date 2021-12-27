@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class DateUtil {
@@ -44,5 +45,13 @@ public class DateUtil {
 	  
   }
   }
+  public static Date DateToStringExample1() {   
+               Date date1 = new Date(0);
+               DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+               String strDate = dateFormat.format(date1);  
+               return new Date(date1.getTime());
+                
+       }
+  
 	}
 

@@ -13,7 +13,7 @@ public class Userslist {
 	private String updateddate;
 	public Userslist() {
 		super();
-		
+	
 	}
 	public Userslist(String username, String displayname, String password, String dob, String phoneno, String status,
 			String createdby, String createddate, String updatedby, String updateddate) {
@@ -89,5 +89,6 @@ public class Userslist {
 	public void setUpdateddate(String updateddate) {
 		this.updateddate = updateddate;
 	}
+	
 	
 }

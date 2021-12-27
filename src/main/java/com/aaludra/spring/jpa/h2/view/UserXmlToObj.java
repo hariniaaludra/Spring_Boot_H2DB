@@ -5,16 +5,15 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="userinput")
-public class Userinput {
+public class UserXmlToObj {
 	private int id;
 	private List<Userslist> userslist;
 	
-	public Userinput() {
-		
+	public UserXmlToObj() {
 		
 	}
 
-	public Userinput(int id, List<Userslist> userslist) {
+	public UserXmlToObj(int id, List<Userslist> userslist) {
 		super();
 		this.id = id;
 		this.userslist = userslist;

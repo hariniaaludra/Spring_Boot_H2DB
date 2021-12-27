@@ -6,15 +6,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName("userslist")
-public class UserJsoninput {
+public class UserJsonToObj {
 		
 		private List<Userslist> userslist;
 		
-		public UserJsoninput () {
+		public UserJsonToObj () {
 			
 		}
 
-		public UserJsoninput(List<Userslist> userslist) {
+		public UserJsonToObj(List<Userslist> userslist) {
 			super();
 			this.userslist = userslist;
 		}

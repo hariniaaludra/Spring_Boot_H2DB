@@ -1,12 +1,12 @@
 package com.aaludra.spring.jpa.h2.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.any;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
+import static org.mockito.ArgumentMatchers.any;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +14,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -21,6 +22,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.aaludra.spring.jpa.h2.model.User;
 import com.aaludra.spring.jpa.h2.repository.UserRepository;
+import com.aaludra.spring.jpa.h2.view.UserInputView;
+import com.aaludra.spring.jpa.h2.view.UserOutputView;
 
 @ExtendWith(MockitoExtension.class)
 class UserHandlerTest2 {
@@ -31,44 +34,38 @@ class UserHandlerTest2 {
 	@InjectMocks
 	private UserHandler userhandler;
 	private User user;
-	private User user1;
-	private User user2;
-	List<User> userList;
+	private List<User> userList;
+	private UserInputView userinputview;
 
 	@BeforeEach
 	public void setUp() {
 		userList = new ArrayList<>();
-		user = new User(0, "kunju", "achuz", "abab", null, null, "Active", "admin", null, "admin", null);
-		user1 = new User(1, "achu", "visruth", "abcd", null, null, "Active", "admin", null, "admin", null);
-		user2 = new User(2, "abi", "abishek", "xyz", null, null, "Active", "admin", null, "admin", null);
-		userList.add(user);
-		userList.add(user1);
-		userList.add(user2);
+		user = new User("aswathy", "achu", "abcd", null, 123456789l, "Active", "admin", null, "admin", null);
 	}
 
 	@Test
 	public void getAllUserTest() {
+		userList.add(user);
 		when(userRepository.findAll()).thenReturn(userList);
-
-		List<User> userlist = userhandler.getAllUser();
-
-		assertThat(userlist.size()).isGreaterThan(1);
-		System.out.println(userlist);
-
+		List<UserOutputView> useroutputview = userhandler.getAllUser();
+		assertEquals(useroutputview.get(0).getUsername(), userList.get(0).getUsername());
 	}
 
 	@Test
 	public void getUserByIdTest() {
-		Mockito.when(userRepository.findById(1)).thenReturn(Optional.ofNullable(user1));
-		assertThat(userhandler.getUserById(user1.getId())).isEqualTo(Optional.ofNullable(user1));
+
+		Mockito.when(userRepository.findById(Mockito.anyInt())).thenReturn(Optional.ofNullable(user));
+		Optional<UserOutputView> useroutput = userhandler.getUserById(user.getId());
+		assertEquals(useroutput.get().getDisplayname(), Optional.ofNullable(user).get().getDisplayname());
 	}
 
 	@Test
 	public void createUser() {
+		UserInputView userinputview = new UserInputView("kunju", "achuz", "abab", null, "1234567819l", "Active",
+				"admin", null, "admin", null);
 		when(userRepository.save(Mockito.any())).thenReturn(user);
-		userhandler.createUser(user);
-		verify(userRepository, times(1)).save(Mockito.any());
-
+		UserOutputView useroutputview = userhandler.createUser(userinputview);
+		assertThat(userhandler.createUser(userinputview).getUsername()).isEqualTo(useroutputview.getUsername());
 	}
 
 	@Test
@@ -76,25 +73,33 @@ class UserHandlerTest2 {
 		userhandler.deleteUserById(1);
 		verify(userRepository).deleteById(1);
 	}
-	
+
 	@Test
-	public void  deleteAll() {
+	public void deleteAll() {
 		userhandler.deleteAll();
 		verify(userRepository).deleteAll();
 
 	}
-	
+
 	@Test
 	public void updateUser() {
-		when(userRepository.save(Mockito.any())).thenReturn(user1);
-		userhandler.updateUser(user);
-		verify(userRepository, times(1)).save(Mockito.any());
-		}
-	
+		UserInputView userinputview = new UserInputView("vichu", "achuz", "abab", null, "1234567819l", "Active",
+				"admin", null, "admin", null);
+		when(userRepository.findById(any())).thenReturn(Optional.ofNullable(user));
+		when(userRepository.save(any())).thenAnswer(AdditionalAnswers.returnsFirstArg());
+		Optional<UserOutputView> useroutputview = Optional
+				.ofNullable(userhandler.updateUser(userinputview, user.getId()));
+		assertThat(userhandler.updateUser(userinputview, user.getId()).getUsername())
+				.isEqualTo(useroutputview.get().getUsername());
+	}
+
 	@Test
 	public void testXmlToObject() {
-		
+
 	}
-	
+
+	@Test
+	public void testJsonToObject() {
+	}
 
 }

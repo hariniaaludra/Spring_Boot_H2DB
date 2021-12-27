@@ -47,9 +47,8 @@ public class User {
 
 	}
 
-	public User(int id, String username, String displayname, String password, Date dob, Long phoneno, String status,
+	public User( String username, String displayname, String password, Date dob, Long phoneno, String status,
 			String createdby, Timestamp createddate, String updatedby, Timestamp updateddate) {
-		this.id = id;
 		this.username = username;
 		this.displayname = displayname;
 		this.password = password;
@@ -61,6 +60,9 @@ public class User {
 		this.updatedby = updatedby;
 		this.updateddate = updateddate;
 	}
+
+	
+
 
 	public int getId() {
 		return id;
@@ -151,7 +153,7 @@ public class User {
 	}
 
 	public String toString() {
-		return "User [id= " + id + ", username=" + username + ", displayname=" + displayname + ", password=" + password
+		return "User [ username=" + username + ", displayname=" + displayname + ", password=" + password
 				+ ", dob=" + dob + ", phoneno=" + phoneno + ", status=" + status + ", createdby=" + createdby
 				+ ", createddate=" + createddate + ", updatedby=" + updatedby + ", updateddate=" + updateddate + "]";
 	}
