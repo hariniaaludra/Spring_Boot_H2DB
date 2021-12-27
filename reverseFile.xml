@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<student>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:47:07.542</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>1</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:47:07.545</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:47:17.08</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>2</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:47:17.08</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:47:19.72</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>3</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:47:19.72</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:47:22.407</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>4</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:47:22.407</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:47:24.789</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>5</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:47:24.789</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:39.677</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>6</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:39.677</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:46.701</createddate>
+        <degree>BE</degree>
+        <dob>1999-08-04</dob>
+        <id>7</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:46.701</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:54.887</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>8</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Harini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:54.887</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:54.911</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>9</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Hari</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:54.911</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:54.946</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>10</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>gomathi</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:54.946</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:54.964</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>11</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>aswathy</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:54.964</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:54.998</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>12</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>galdson</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:54.998</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:55.03</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>13</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>suriya</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:55.03</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:55.044</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>14</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>charu</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:55.044</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:55.058</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>15</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>Hasini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:55.058</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:55.095</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>16</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>krish</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:55.095</updateddate>
+    </studentlist>
+    <studentlist>
+        <course>CS</course>
+        <createdby>Admin</createdby>
+        <createddate>2021-12-24 09:52:55.131</createddate>
+        <degree>BE</degree>
+        <dob>0010-01-19</dob>
+        <id>17</id>
+        <rollnumber>13</rollnumber>
+        <status>Active</status>
+        <studentname>dharini</studentname>
+        <updatedby>Admin</updatedby>
+        <updateddate>2021-12-24 09:52:55.131</updateddate>
+    </studentlist>
+</student>
