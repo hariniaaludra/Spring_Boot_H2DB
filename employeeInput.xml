@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<employeeInput >
+	
+	<employeelist>
+	<empName>Gomathi</empName>    
+		<empId>EMP01</empId>
+		<empPhonenumber>8903082097</empPhonenumber>
+		<empAddress>Valparai</empAddress>
+		<empDoj>2021-12-26</empDoj>
+		<empGrade>G1</empGrade>
+		<salary>10000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Abinaya</empName>    
+		<empId>EMP02</empId>
+		<empPhonenumber>9903082098</empPhonenumber>
+		<empAddress>Plladam</empAddress>
+		<empDoj>2021-12-25</empDoj>
+		<empGrade>G2</empGrade>
+		<salary>15000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Angel</empName>    
+		<empId>EMP03</empId>
+		<empPhonenumber>7503082099</empPhonenumber>
+		<empAddress>Coimbatore</empAddress>
+		<empDoj>2021-12-24</empDoj>
+		<empGrade>G3</empGrade>
+		<salary>40000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Nandhini</empName>    
+		<empId>EMP04</empId>
+		<empPhonenumber>9803082097</empPhonenumber>
+		<empAddress>Pollachi</empAddress>
+		<empDoj>2021-12-23</empDoj>
+		<empGrade>G1</empGrade>
+		<salary>13000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Shalini</empName>    
+		<empId>EMP05</empId>
+		<empPhonenumber>9403082099</empPhonenumber>
+		<empAddress>Coimbatore</empAddress>
+		<empDoj>2021-12-22</empDoj>
+		<empGrade>G2</empGrade>
+		<salary>17000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Karthiga</empName>    
+		<empId>EMP06</empId>
+		<empPhonenumber>71030820100</empPhonenumber>
+		<empAddress>Ooty</empAddress>
+		<empDoj>2021-12-21</empDoj>
+		<empGrade>G1</empGrade>
+		<salary>12000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Mythili</empName>    
+		<empId>EMP07</empId>
+		<empPhonenumber>9803082098</empPhonenumber>
+		<empAddress>Coimbatore</empAddress>
+		<empDoj>2021-12-24</empDoj>
+		<empGrade>G2</empGrade>
+		<salary>16000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Dhrishya</empName>    
+		<empId>EMP08</empId>
+		<empPhonenumber>6003082078</empPhonenumber>
+		<empAddress>Palakkad</empAddress>
+		<empDoj>2021-12-24</empDoj>
+		<empGrade>G3</empGrade>
+		<salary>45000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Haritha</empName>    
+		<empId>EMP09</empId>
+		<empPhonenumber>7503082020</empPhonenumber>
+		<empAddress>Chennai</empAddress>
+		<empDoj>2021-12-23</empDoj>
+		<empGrade>G1</empGrade>
+		<salary>14000</salary>
+	</employeelist>
+	
+	<employeelist>
+	<empName>Chindhoora</empName>    
+		<empId>EMP10</empId>
+		<empPhonenumber>9803082093</empPhonenumber>
+		<empAddress>Trichy</empAddress>
+		<empDoj>2021-12-21</empDoj>
+		<empGrade>G2</empGrade>
+		<salary>19000</salary>
+	</employeelist>
+	
+	</employeeInput>
