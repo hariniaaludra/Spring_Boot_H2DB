@@ -3,7 +3,14 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-public class Productview {
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.aaludra.spring.jpa.h2.model.Product;
+//@XmlRootElement(name="products")
+public class Productviewoutput {
+	
+	private String id;
+	
 	private String productname;
 	
 	private String productcode;
@@ -24,12 +31,18 @@ public class Productview {
 	
 	private String updateddate;
 
-	public Productview() {
-		
+
+	
+	
+	public Productviewoutput() {
+		super();
 	}
 
-	public Productview(String productname, String productcode, String price, String expdate, String mfgdate,
+
+
+	public Productviewoutput(String id, String productname, String productcode, String price, String expdate, String mfgdate,
 			String status, String createdby, String createddate, String updatedby, String updatedate) {
+		this.id=id;
 		
 		this.productname = productname;
 		
@@ -50,6 +63,18 @@ public class Productview {
 		this.updatedby = updatedby;
 		
 		this.updateddate = updatedate;
+	}
+
+	
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
@@ -135,7 +160,7 @@ public class Productview {
 	}
 	@Override
 	public  String toString() {
-		return "Product [ProductName=" + productname + ", ProductCode=" + productcode + ", price=" + price + ",expdate="
+		return "Product [Id="+id+",ProductName=" + productname + ", ProductCode=" + productcode + ", price=" + price + ",expdate="
 				+ expdate + ", mfgdate=" + mfgdate + ",Status=" + status + ",Createdby=" + createdby + ", createddate="
 				+ createddate + ",updatedby=" + updatedby + ", Updateddate" + updateddate + "]";
 	}

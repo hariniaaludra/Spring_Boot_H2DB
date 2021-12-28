@@ -2,9 +2,11 @@ package com.aaludra.spring.jpa.h2.validation;
 
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 import com.aaludra.spring.jpa.h2.model.Product;
+import com.aaludra.spring.jpa.h2.view.Productviewinput;
+import com.aaludra.spring.jpa.h2.view.Productviewoutput;
 
 public class Productvalidation {
-	public void Validat(Product product) throws InvalidRequestException {
+	public void Validat(Productviewinput product) throws InvalidRequestException {
 		if (product.getProductname() == null) {
 			throw new InvalidRequestException("product Name mandatory");
 		}

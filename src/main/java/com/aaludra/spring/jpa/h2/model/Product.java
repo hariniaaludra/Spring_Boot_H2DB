@@ -2,8 +2,7 @@ package com.aaludra.spring.jpa.h2.model;
 
 import java.sql.Timestamp;
 import java.sql.Date;
-
-
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
 import javax.persistence.*;
@@ -51,9 +50,10 @@ public class Product {
 	}
 
 
-	public Product(String productname, String productcode, double price, Date expdate, Date mfgdate,
+	public Product(long id,String productname, String productcode, double price, Date expdate, Date mfgdate,
 			String status, String createdby, Timestamp createddate, String updatedby, Timestamp updatedate
 		) {
+		this.id=id;
 	this.productname=productname;
 	this.productcode=productcode;
 	this.price=price;
@@ -65,6 +65,11 @@ public class Product {
 	this.updatedby=updatedby;
 	this.updateddate=updatedate;
 	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 
 	public long getId() {
 		return id;
@@ -160,5 +165,8 @@ public class Product {
 				+ ",expdate=" + expdate + ", mfgdate=" + mfgdate + ",Status=" + status + ",Createdby=" + createdby
 				+ ", createddate=" + createddate + ",updatedby=" + updatedby + ", Updateddate" + updateddate + "]";
 	}
+
+
+
 
 }

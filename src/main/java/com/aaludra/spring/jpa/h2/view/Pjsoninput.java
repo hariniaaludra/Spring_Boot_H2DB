@@ -2,21 +2,18 @@ package com.aaludra.spring.jpa.h2.view;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
-
-@XmlRootElement(name="products")
-public class Productinput {
+@JsonRootName("productlist")
+public class Pjsoninput {
 	private List<Productsxml> productlist;
 	
-	public Productinput() {
+	public Pjsoninput () {
 		
 	}
 
-	public Productinput(  List<Productsxml> productlist) {
+	public Pjsoninput( List<Productsxml> productlist) {
 		super();
-		this. productlist =  productlist;
+		this.productlist = productlist;
 	}
 
 	public List<Productsxml> getProductlist() {
@@ -26,4 +23,7 @@ public class Productinput {
 	public void setProductlist(List<Productsxml> productlist) {
 		this.productlist = productlist;
 	}
+	
+	
+	
 }

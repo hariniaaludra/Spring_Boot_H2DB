@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <products>
-    <productlist>
+    <product>
         <createdby>suriya</createdby>
         <createddate>2020-10-11 00:00:00.0</createddate>
         <expdate>2023-12-05</expdate>
@@ -9,11 +9,11 @@
         <price>20.0</price>
         <productcode>id-106</productcode>
         <productname>ice</productname>
-        <status>cold product</status>z
+        <status>cold product</status>
         <updatedate>2020-10-11 00:00:00.0</updatedate>
         <updatedby>suriya</updatedby>
-    </productlist>
-    <productlist>
+    </product>
+    <product>
         <createdby>suriya</createdby>
         <createddate>2020-10-11 00:00:00.0</createddate>
         <expdate>2023-12-05</expdate>
@@ -25,8 +25,8 @@
         <status>cold product</status>
         <updatedate>2020-10-11 00:00:00.0</updatedate>
         <updatedby>suriya</updatedby>
-    </productlist>
-    <productlist>
+    </product>
+    <product>
         <createdby>suriya</createdby>
         <createddate>2020-10-11 00:00:00.0</createddate>
         <expdate>2023-12-05</expdate>
@@ -38,5 +38,5 @@
         <status>cold product</status>
         <updatedate>2020-10-11 00:00:00.0</updatedate>
         <updatedby>suriya</updatedby>
-    </productlist>
+    </product>
 </products>
