@@ -32,7 +32,6 @@ import com.aaludra.spring.jpa.h2.view.EmployeeInput;
 import com.aaludra.spring.jpa.h2.view.EmployeeInputObjtoJson;
 import com.aaludra.spring.jpa.h2.view.EmployeeInputObjtoXml;
 import com.aaludra.spring.jpa.h2.view.EmployeeViewOut;
-import com.aaludra.spring.jpa.h2.view.Userinput;
 import com.aaludra.spring.jpa.h2.exception.InvalidRequestException;
 
 @RestController

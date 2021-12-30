@@ -31,7 +31,8 @@ import com.aaludra.spring.jpa.h2.validation.ErrorMessages;
 import com.aaludra.spring.jpa.h2.validation.Productvalidation;
 import com.aaludra.spring.jpa.h2.view.Productinput;
 import com.aaludra.spring.jpa.h2.view.Productsxml;
-import com.aaludra.spring.jpa.h2.view.Productview;
+import com.aaludra.spring.jpa.h2.view.Productviewinput;
+import com.aaludra.spring.jpa.h2.view.Productviewoutput;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
@@ -43,9 +44,9 @@ public class ProductController {
 	ProductHandler handler;
 
 	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getAllProduct(@RequestParam(required = false) String productname) {
+	public ResponseEntity<List<Productviewoutput>> getAllProduct(@RequestParam(required = false) String productname) {
 		try {
-			List<Product> products = handler.getAllProduct(productname);
+			List<Productviewoutput> products = handler.getAllProduct();
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
@@ -56,8 +57,8 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/{id}")
-	public ResponseEntity<Product> getProductById(@PathVariable("id") long id) {
-		Optional<Product> productData = handler.getProductById(id);
+	public ResponseEntity<Productviewoutput> getProductById(@PathVariable("id") long id) {
+		Optional<Productviewoutput> productData = handler.getProductById(id);
 
 		if (productData.isPresent()) {
 			return new ResponseEntity<>(productData.get(), HttpStatus.OK);
@@ -67,36 +68,14 @@ public class ProductController {
 	}
 
 	@PostMapping("/products")
-	public ResponseEntity<?> createProduct(@RequestBody Product product) {
+	public ResponseEntity<?> createProduct(@RequestBody Productviewinput product) {
 
 		try {
-			Product productobj = handler.createproduct(product);
-			Productview obj = new Productview();
 			Productvalidation prt = new Productvalidation();
 			prt.Validat(product);
+			Productviewoutput productobj = handler.createproduct(product);
 
-			obj.setProductname(productobj.getProductname());
-
-			obj.setUpdatedby(productobj.getUpdatedby());
-
-			obj.setProductcode(productobj.getProductcode());
-
-			obj.setPrice(Double.toString(productobj.getPrice()));
-
-			obj.setStatus(productobj.getStatus());
-
-			obj.setCreatedby(productobj.getCreatedby());
-
-			obj.setCreateddate(productobj.getCreateddate().toString());
-
-			obj.setUpdatedate(productobj.getUpdatedate().toString());
-
-			obj.setMfgdate(Dateconvert.convertStringToDate(productobj.getMfgdate()));
-
-			obj.setExpdate(Dateconvert.convertStringToDate(productobj.getExpdate()));
-
-
-			return new ResponseEntity<>(obj, HttpStatus.CREATED);
+			return new ResponseEntity<>(productobj, HttpStatus.CREATED);
 		} catch (InvalidRequestException e) {
 			return new ResponseEntity<>(new ErrorMessages(HttpStatus.BAD_REQUEST.value(), e.getMessage()),
 					HttpStatus.BAD_REQUEST);
@@ -106,24 +85,11 @@ public class ProductController {
 	}
 
 	@PutMapping("/products/{id}")
-	public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
-		Optional<Product> productData = handler.getProductById(id);
-		if (productData.isPresent()) {
-			Product productobj = productData.get();
-			productobj.setProductname(product.getProductname());
-			productobj.setProductcode(product.getProductcode());
-			productobj.setPrice((product.getPrice()));
-			productobj.setExpdate(product.getExpdate());
-			productobj.setMfgdate(product.getMfgdate());
-			productobj.setStatus(product.getStatus());
-			productobj.setCreatedby(product.getCreatedby());
-			productobj.setCreateddate(product.getCreateddate());
-			productobj.setUpdatedby(product.getUpdatedby());
-			productobj.setUpdatedate(product.getUpdatedate());
-			return new ResponseEntity<>(handler.updateProduct(productobj), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Productviewoutput> updateProduct(@PathVariable("id") long id, @RequestBody Productviewinput product) {
+		//Optional<Productviewoutput> productData = handler.getProductById(id);
+		
+			return new ResponseEntity<>(handler.updateProduct(id,product), HttpStatus.OK);
+		
 	}
 
 	@DeleteMapping("/products/{id}")
@@ -148,32 +114,55 @@ public class ProductController {
 	}
 
 	@PostMapping("/products/process/xml")
-	public ResponseEntity<Productinput> testXmlToObject(){
+	public ResponseEntity<Productinput> testXmlToObject() {
 		try {
-			 handler.testXmlToObject();
+			handler.testXmlToObject();
 		} catch (FileNotFoundException | JAXBException e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return null;
+	}
+
+	@PostMapping("/products/process/json")
+	public ResponseEntity<Productviewoutput> testJsonToObject() throws JsonParseException, JsonMappingException, IOException {
+		try {
+			handler.testJsonToObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
 	}
 	
-	@PostMapping("/products/process/json")
-	public ResponseEntity<Productview> testJsonToObject() throws JsonParseException, JsonMappingException, IOException{
+	@GetMapping("/products/reverse/json")
+	public ResponseEntity<Productviewoutput> databaseToJson() throws JsonParseException, JsonMappingException, IOException {
 		try {
-			 handler.testJsonToObject();
+			handler.testJsonToObject();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return null;
+	}
+	
+
+	@GetMapping("/products/reverse/xml")
+	public ResponseEntity<Productviewoutput> databaseToXml() {
+		try {
+			handler.testXmlToObject();
+		} catch (FileNotFoundException | JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
 	}
 
 	@GetMapping("/products/createdby")
 
-	public ResponseEntity<List<Product>> findBycreatedby() {
+	public ResponseEntity<List<Productviewoutput>> findByproductname() {
 		try {
-			List<Product> products = handler.findBycreatedby();
+			List<Productviewoutput> products = handler.findByproductname();
 			if (products.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
